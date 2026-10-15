@@ -1,0 +1,1161 @@
+{
+  "$description": "Martha · tokens derivados del Manual de Marca LinkTIC v3. Generado por `npm run tokens`.",
+  "color": {
+    "premium": {
+      "50": {
+        "$type": "color",
+        "$value": "#F2F0FF"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#E4DFFE"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#CAC1FC"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#A597F8"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#7B64F2"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#5034E6"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#2709CD"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#2008AA"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#1A0888"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#15096B"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#0B0440"
+      }
+    },
+    "azul": {
+      "50": {
+        "$type": "color",
+        "$value": "#EEF8FF"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#D8EEFF"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#B3DFFF"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#7DCAFF"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#3DB0FF"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#0094FF"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#0077D6"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#005EAB"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#004F8C"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#064273"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#042A4C"
+      }
+    },
+    "cian": {
+      "50": {
+        "$type": "color",
+        "$value": "#ECFDFF"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#CFF8FF"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#A5F2FF"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#67E8FF"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#00D9FF"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#00BDE3"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#0096BF"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#04779A"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#0C607D"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#0F506A"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#033449"
+      }
+    },
+    "grafito": {
+      "0": {
+        "$type": "color",
+        "$value": "#FFFFFF"
+      },
+      "25": {
+        "$type": "color",
+        "$value": "#FBFBFD"
+      },
+      "50": {
+        "$type": "color",
+        "$value": "#F5F6F8"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#ECEEF2"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#E1E3E8"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#C9CDD5"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#9AA1AE"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#6E7684"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#535B69"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#3C4350"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#2A303C"
+      },
+      "850": {
+        "$type": "color",
+        "$value": "#232937"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#1E232F"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#14171F"
+      }
+    },
+    "grisAzul": {
+      "50": {
+        "$type": "color",
+        "$value": "#F3F6F9"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#E4EAF0"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#C9D3DE"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#A3B2C3"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#7B8DA2"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#617488"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#516276"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#435163"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#394452"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#323B46"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#20262E"
+      }
+    },
+    "verde": {
+      "50": {
+        "$type": "color",
+        "$value": "#F0FDEB"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#DCFAD1"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#B9F4A6"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#85EA6C"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#4FDC33"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#1DCE00"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#14A800"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#008800"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#0B6A0A"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#0E570E"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#023104"
+      }
+    },
+    "ambar": {
+      "50": {
+        "$type": "color",
+        "$value": "#FFFAEB"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#FEF0C7"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#FEDF89"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#FEC84B"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#FDB022"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#F79009"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#DC6803"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#B54708"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#93370D"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#7A2E0E"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#4E1D09"
+      }
+    },
+    "rojo": {
+      "50": {
+        "$type": "color",
+        "$value": "#FFF1F2"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#FFE0E2"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#FFC6CB"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#FF9DA5"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#FF6470"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#F83545"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#E5172A"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#C10F21"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#A01120"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#841522"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#48050C"
+      }
+    },
+    "lila": {
+      "50": {
+        "$type": "color",
+        "$value": "#F7F3FF"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#EFE7FF"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#E0D2FF"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#C9B1FD"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#AE88F9"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#9161F2"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#7A43E3"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#6631C4"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#53299F"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#44247F"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#2A1258"
+      }
+    },
+    "malva": {
+      "50": {
+        "$type": "color",
+        "$value": "#FDF4FF"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#FAE8FF"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#F5D0FE"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#F0ABFC"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#E879F9"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#D946EF"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#C026D3"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#A21CAF"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#86198F"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#701A75"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#4A044E"
+      }
+    },
+    "ciruela": {
+      "700": {
+        "$type": "color",
+        "$value": "#3B1773"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#2E0F5E"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#220A47"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#160530"
+      }
+    },
+    "durazno": {
+      "100": {
+        "$type": "color",
+        "$value": "#FFEDE6"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#FFD9CC"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#FFBFA8"
+      }
+    },
+    "bruma": {
+      "0": {
+        "$type": "color",
+        "$value": "#FFFFFF"
+      },
+      "25": {
+        "$type": "color",
+        "$value": "#FCFBFE"
+      },
+      "50": {
+        "$type": "color",
+        "$value": "#F7F5FB"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#EFECF6"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#E3DEEE"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#CBC4DB"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#9F96B3"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#776E8C"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#5B536F"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#433C55"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#2E2840"
+      },
+      "850": {
+        "$type": "color",
+        "$value": "#241F35"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#1B1729"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#120F1D"
+      }
+    },
+    "noche": {
+      "600": {
+        "$type": "color",
+        "$value": "#55555F"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#3D3D47"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#2E2E37"
+      },
+      "820": {
+        "$type": "color",
+        "$value": "#28282F"
+      },
+      "850": {
+        "$type": "color",
+        "$value": "#202027"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#18181D"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#121216"
+      }
+    }
+  },
+  "tema": {
+    "claro": {
+      "fondo": {
+        "$type": "color",
+        "$value": "{color.bruma.50}",
+        "$description": "Fondo de la página"
+      },
+      "superficie": {
+        "$type": "color",
+        "$value": "{color.bruma.0}",
+        "$description": "Tarjetas, tablas, formularios"
+      },
+      "superficie-alta": {
+        "$type": "color",
+        "$value": "{color.bruma.0}",
+        "$description": "Modales, menús y popovers"
+      },
+      "hundido": {
+        "$type": "color",
+        "$value": "{color.bruma.100}",
+        "$description": "Zonas rehundidas: campos, pistas, segmentos"
+      },
+      "linea": {
+        "$type": "color",
+        "$value": "{color.bruma.200}",
+        "$description": "Bordes y divisores"
+      },
+      "linea-fuerte": {
+        "$type": "color",
+        "$value": "{color.bruma.300}",
+        "$description": "Bordes de campos y separadores marcados"
+      },
+      "tinta": {
+        "$type": "color",
+        "$value": "{color.bruma.900}",
+        "$description": "Texto principal"
+      },
+      "titulo": {
+        "$type": "color",
+        "$value": "{color.lila.950}",
+        "$description": "Títulos (ciruela)"
+      },
+      "tinta-suave": {
+        "$type": "color",
+        "$value": "{color.bruma.600}",
+        "$description": "Texto secundario"
+      },
+      "tinta-tenue": {
+        "$type": "color",
+        "$value": "{color.bruma.500}",
+        "$description": "Ayudas, metadatos, ejes de gráficos"
+      },
+      "marca": {
+        "$type": "color",
+        "$value": "{color.lila.600}",
+        "$description": "Acción principal, enlaces, selección"
+      },
+      "marca-oscuro": {
+        "$type": "color",
+        "$value": "{color.lila.700}",
+        "$description": "Hover / presionado de la acción principal"
+      },
+      "marca-suave": {
+        "$type": "color",
+        "$value": "{color.lila.50}",
+        "$description": "Fondos de selección y resaltado"
+      },
+      "marca-contraste": {
+        "$type": "color",
+        "$value": "{color.bruma.0}",
+        "$description": "Texto sobre la acción principal"
+      },
+      "acento": {
+        "$type": "color",
+        "$value": "{color.malva.700}",
+        "$description": "Malva: acentos y brillos"
+      },
+      "acento-suave": {
+        "$type": "color",
+        "$value": "{color.malva.50}",
+        "$description": "Fondo malva suave"
+      },
+      "foco": {
+        "$type": "color",
+        "$value": "{color.lila.500}",
+        "$description": "Anillo de foco del teclado"
+      },
+      "verde": {
+        "$type": "color",
+        "$value": "{color.verde.800}",
+        "$description": "Semáforo saludable / éxito"
+      },
+      "verde-suave": {
+        "$type": "color",
+        "$value": "{color.verde.50}",
+        "$description": "Fondo de estado saludable"
+      },
+      "amarillo": {
+        "$type": "color",
+        "$value": "{color.ambar.700}",
+        "$description": "Semáforo margen bajo / advertencia"
+      },
+      "amarillo-suave": {
+        "$type": "color",
+        "$value": "{color.ambar.50}",
+        "$description": "Fondo de advertencia"
+      },
+      "rojo": {
+        "$type": "color",
+        "$value": "{color.rojo.700}",
+        "$description": "Semáforo pérdida / error / destructivo"
+      },
+      "rojo-suave": {
+        "$type": "color",
+        "$value": "{color.rojo.50}",
+        "$description": "Fondo de error"
+      },
+      "datos-1": {
+        "$type": "color",
+        "$value": "{color.lila.600}",
+        "$description": "Serie de datos 1"
+      },
+      "datos-2": {
+        "$type": "color",
+        "$value": "{color.malva.500}",
+        "$description": "Serie de datos 2"
+      },
+      "datos-3": {
+        "$type": "color",
+        "$value": "{color.lila.300}",
+        "$description": "Serie de datos 3"
+      },
+      "datos-4": {
+        "$type": "color",
+        "$value": "{color.bruma.300}",
+        "$description": "Serie de datos 4 / estimado"
+      },
+      "datos-5": {
+        "$type": "color",
+        "$value": "{color.malva.300}",
+        "$description": "Serie de datos 5"
+      },
+      "datos-6": {
+        "$type": "color",
+        "$value": "{color.lila.900}",
+        "$description": "Serie de datos 6"
+      },
+      "datos-rejilla": {
+        "$type": "color",
+        "$value": "{color.bruma.200}",
+        "$description": "Rejilla de gráficos"
+      }
+    },
+    "oscuro": {
+      "fondo": {
+        "$type": "color",
+        "$value": "{color.noche.900}",
+        "$description": "Fondo de la página"
+      },
+      "superficie": {
+        "$type": "color",
+        "$value": "{color.noche.850}",
+        "$description": "Tarjetas, tablas, formularios"
+      },
+      "superficie-alta": {
+        "$type": "color",
+        "$value": "{color.noche.820}",
+        "$description": "Modales, menús y popovers"
+      },
+      "hundido": {
+        "$type": "color",
+        "$value": "{color.noche.950}",
+        "$description": "Zonas rehundidas: campos, pistas, segmentos"
+      },
+      "linea": {
+        "$type": "color",
+        "$value": "{color.noche.800}",
+        "$description": "Bordes y divisores"
+      },
+      "linea-fuerte": {
+        "$type": "color",
+        "$value": "{color.noche.700}",
+        "$description": "Bordes de campos y separadores marcados"
+      },
+      "tinta": {
+        "$type": "color",
+        "$value": "{color.bruma.50}",
+        "$description": "Texto principal"
+      },
+      "titulo": {
+        "$type": "color",
+        "$value": "{color.lila.100}",
+        "$description": "Títulos (ciruela)"
+      },
+      "tinta-suave": {
+        "$type": "color",
+        "$value": "{color.bruma.300}",
+        "$description": "Texto secundario"
+      },
+      "tinta-tenue": {
+        "$type": "color",
+        "$value": "{color.bruma.400}",
+        "$description": "Ayudas, metadatos, ejes de gráficos"
+      },
+      "marca": {
+        "$type": "color",
+        "$value": "{color.lila.300}",
+        "$description": "Acción principal, enlaces, selección"
+      },
+      "marca-oscuro": {
+        "$type": "color",
+        "$value": "{color.lila.200}",
+        "$description": "Hover / presionado de la acción principal"
+      },
+      "marca-suave": {
+        "$type": "color",
+        "$value": "{color.lila.950}",
+        "$description": "Fondos de selección y resaltado"
+      },
+      "marca-contraste": {
+        "$type": "color",
+        "$value": "{color.lila.950}",
+        "$description": "Texto sobre la acción principal"
+      },
+      "acento": {
+        "$type": "color",
+        "$value": "{color.malva.300}",
+        "$description": "Malva: acentos y brillos"
+      },
+      "acento-suave": {
+        "$type": "color",
+        "$value": "{color.malva.950}",
+        "$description": "Fondo malva suave"
+      },
+      "foco": {
+        "$type": "color",
+        "$value": "{color.malva.300}",
+        "$description": "Anillo de foco del teclado"
+      },
+      "verde": {
+        "$type": "color",
+        "$value": "{color.verde.400}",
+        "$description": "Semáforo saludable / éxito"
+      },
+      "verde-suave": {
+        "$type": "color",
+        "$value": "{color.verde.950}",
+        "$description": "Fondo de estado saludable"
+      },
+      "amarillo": {
+        "$type": "color",
+        "$value": "{color.ambar.300}",
+        "$description": "Semáforo margen bajo / advertencia"
+      },
+      "amarillo-suave": {
+        "$type": "color",
+        "$value": "{color.ambar.950}",
+        "$description": "Fondo de advertencia"
+      },
+      "rojo": {
+        "$type": "color",
+        "$value": "{color.rojo.400}",
+        "$description": "Semáforo pérdida / error / destructivo"
+      },
+      "rojo-suave": {
+        "$type": "color",
+        "$value": "{color.rojo.950}",
+        "$description": "Fondo de error"
+      },
+      "datos-1": {
+        "$type": "color",
+        "$value": "{color.lila.400}",
+        "$description": "Serie de datos 1"
+      },
+      "datos-2": {
+        "$type": "color",
+        "$value": "{color.malva.400}",
+        "$description": "Serie de datos 2"
+      },
+      "datos-3": {
+        "$type": "color",
+        "$value": "{color.lila.200}",
+        "$description": "Serie de datos 3"
+      },
+      "datos-4": {
+        "$type": "color",
+        "$value": "{color.bruma.600}",
+        "$description": "Serie de datos 4 / estimado"
+      },
+      "datos-5": {
+        "$type": "color",
+        "$value": "{color.malva.200}",
+        "$description": "Serie de datos 5"
+      },
+      "datos-6": {
+        "$type": "color",
+        "$value": "{color.lila.100}",
+        "$description": "Serie de datos 6"
+      },
+      "datos-rejilla": {
+        "$type": "color",
+        "$value": "{color.noche.800}",
+        "$description": "Rejilla de gráficos"
+      }
+    }
+  },
+  "tipografia": {
+    "familia": {
+      "display": {
+        "$type": "fontFamily",
+        "$value": "\"Bricolage Grotesque Variable\", \"Bricolage Grotesque\", ui-sans-serif, system-ui, sans-serif"
+      },
+      "sans": {
+        "$type": "fontFamily",
+        "$value": "\"Plus Jakarta Sans Variable\", \"Plus Jakarta Sans\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", sans-serif"
+      },
+      "serif": {
+        "$type": "fontFamily",
+        "$value": "\"Instrument Serif\", ui-serif, Georgia, serif"
+      },
+      "mono": {
+        "$type": "fontFamily",
+        "$value": "ui-monospace, \"SFMono-Regular\", Menlo, Consolas, monospace"
+      }
+    },
+    "tamano": {
+      "2xs": {
+        "$type": "typography",
+        "$value": {
+          "fontSize": "0.6875rem",
+          "lineHeight": "1rem",
+          "letterSpacing": "0.01em"
+        }
+      },
+      "xs": {
+        "$type": "typography",
+        "$value": {
+          "fontSize": "0.75rem",
+          "lineHeight": "1rem",
+          "letterSpacing": "0.005em"
+        }
+      },
+      "sm": {
+        "$type": "typography",
+        "$value": {
+          "fontSize": "0.8125rem",
+          "lineHeight": "1.25rem",
+          "letterSpacing": "0"
+        }
+      },
+      "base": {
+        "$type": "typography",
+        "$value": {
+          "fontSize": "0.875rem",
+          "lineHeight": "1.375rem",
+          "letterSpacing": "0"
+        }
+      },
+      "md": {
+        "$type": "typography",
+        "$value": {
+          "fontSize": "1rem",
+          "lineHeight": "1.5rem",
+          "letterSpacing": "-0.005em"
+        }
+      },
+      "lg": {
+        "$type": "typography",
+        "$value": {
+          "fontSize": "1.125rem",
+          "lineHeight": "1.625rem",
+          "letterSpacing": "-0.01em"
+        }
+      },
+      "xl": {
+        "$type": "typography",
+        "$value": {
+          "fontSize": "1.375rem",
+          "lineHeight": "1.875rem",
+          "letterSpacing": "-0.015em"
+        }
+      },
+      "2xl": {
+        "$type": "typography",
+        "$value": {
+          "fontSize": "1.75rem",
+          "lineHeight": "2.25rem",
+          "letterSpacing": "-0.02em"
+        }
+      },
+      "3xl": {
+        "$type": "typography",
+        "$value": {
+          "fontSize": "2.25rem",
+          "lineHeight": "2.625rem",
+          "letterSpacing": "-0.025em"
+        }
+      },
+      "4xl": {
+        "$type": "typography",
+        "$value": {
+          "fontSize": "3rem",
+          "lineHeight": "3.25rem",
+          "letterSpacing": "-0.03em"
+        }
+      },
+      "display": {
+        "$type": "typography",
+        "$value": {
+          "fontSize": "4rem",
+          "lineHeight": "4rem",
+          "letterSpacing": "-0.035em"
+        }
+      }
+    },
+    "peso": {
+      "regular": {
+        "$type": "fontWeight",
+        "$value": 400
+      },
+      "medio": {
+        "$type": "fontWeight",
+        "$value": 500
+      },
+      "semibold": {
+        "$type": "fontWeight",
+        "$value": 600
+      },
+      "bold": {
+        "$type": "fontWeight",
+        "$value": 700
+      },
+      "extrabold": {
+        "$type": "fontWeight",
+        "$value": 800
+      }
+    }
+  },
+  "radio": {
+    "xs": {
+      "$type": "dimension",
+      "$value": "4px"
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "6px"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "10px"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "14px"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "20px"
+    },
+    "2xl": {
+      "$type": "dimension",
+      "$value": "28px"
+    },
+    "completo": {
+      "$type": "dimension",
+      "$value": "9999px"
+    }
+  },
+  "sombra": {
+    "claro": {
+      "xs": {
+        "$type": "shadow",
+        "$value": "0 1px 2px rgb(42 18 88 / 0.06)"
+      },
+      "sm": {
+        "$type": "shadow",
+        "$value": "0 1px 3px rgb(42 18 88 / 0.08), 0 1px 2px rgb(42 18 88 / 0.04)"
+      },
+      "md": {
+        "$type": "shadow",
+        "$value": "0 12px 28px -10px rgb(68 36 127 / 0.18), 0 3px 8px -3px rgb(42 18 88 / 0.08)"
+      },
+      "lg": {
+        "$type": "shadow",
+        "$value": "0 28px 56px -16px rgb(68 36 127 / 0.28), 0 8px 16px -8px rgb(42 18 88 / 0.10)"
+      },
+      "brillo": {
+        "$type": "shadow",
+        "$value": "0 14px 34px -10px rgb(122 67 227 / 0.55)"
+      },
+      "realce": {
+        "$type": "shadow",
+        "$value": "inset 0 1px 0 rgb(255 255 255 / 0.85)"
+      }
+    },
+    "oscuro": {
+      "xs": {
+        "$type": "shadow",
+        "$value": "0 1px 2px rgb(0 0 0 / 0.45)"
+      },
+      "sm": {
+        "$type": "shadow",
+        "$value": "0 1px 3px rgb(0 0 0 / 0.5)"
+      },
+      "md": {
+        "$type": "shadow",
+        "$value": "0 12px 28px -10px rgb(0 0 0 / 0.6), 0 0 0 1px rgb(174 136 249 / 0.04)"
+      },
+      "lg": {
+        "$type": "shadow",
+        "$value": "0 28px 56px -16px rgb(0 0 0 / 0.7)"
+      },
+      "brillo": {
+        "$type": "shadow",
+        "$value": "0 14px 34px -12px rgb(122 67 227 / 0.35)"
+      },
+      "realce": {
+        "$type": "shadow",
+        "$value": "inset 0 1px 0 rgb(255 255 255 / 0.06)"
+      }
+    }
+  },
+  "movimiento": {
+    "duracion": {
+      "instantanea": {
+        "$type": "duration",
+        "$value": "80ms"
+      },
+      "rapida": {
+        "$type": "duration",
+        "$value": "150ms"
+      },
+      "base": {
+        "$type": "duration",
+        "$value": "240ms"
+      },
+      "lenta": {
+        "$type": "duration",
+        "$value": "420ms"
+      },
+      "escena": {
+        "$type": "duration",
+        "$value": "800ms"
+      }
+    },
+    "curva": {
+      "estandar": {
+        "$type": "cubicBezier",
+        "$value": "cubic-bezier(0.2, 0, 0, 1)"
+      },
+      "entrada": {
+        "$type": "cubicBezier",
+        "$value": "cubic-bezier(0, 0, 0.2, 1)"
+      },
+      "salida": {
+        "$type": "cubicBezier",
+        "$value": "cubic-bezier(0.4, 0, 1, 1)"
+      },
+      "enfasis": {
+        "$type": "cubicBezier",
+        "$value": "cubic-bezier(0.16, 1, 0.3, 1)"
+      }
+    }
+  }
+}

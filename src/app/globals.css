@@ -1,0 +1,549 @@
+@import "tailwindcss";
+@import "../design/tokens.css";
+
+/* El modo oscuro se controla con data-tema en <html> (script anti-parpadeo en layout.tsx). */
+@custom-variant dark (&:where([data-tema="oscuro"], [data-tema="oscuro"] *));
+
+/*
+ * Puente tokens → Tailwind. `inline` hace que las utilidades usen var(--mt-*) directamente,
+ * así el cambio de tema no requiere recompilar ni duplicar clases.
+ */
+@theme inline {
+  --font-sans: var(--mt-fuente-sans);
+  --font-display: var(--mt-fuente-display);
+  --font-serif: var(--mt-fuente-serif);
+  --font-mono: var(--mt-fuente-mono);
+
+  /* Semánticos (cambian con el tema) */
+  --color-fondo: var(--mt-color-fondo);
+  --color-superficie: var(--mt-color-superficie);
+  --color-superficie-alta: var(--mt-color-superficie-alta);
+  --color-hundido: var(--mt-color-hundido);
+  --color-linea: var(--mt-color-linea);
+  --color-linea-fuerte: var(--mt-color-linea-fuerte);
+  --color-tinta: var(--mt-color-tinta);
+  --color-titulo: var(--mt-color-titulo);
+  --color-tinta-suave: var(--mt-color-tinta-suave);
+  --color-tinta-tenue: var(--mt-color-tinta-tenue);
+  --color-marca: var(--mt-color-marca);
+  --color-marca-oscuro: var(--mt-color-marca-oscuro);
+  --color-marca-suave: var(--mt-color-marca-suave);
+  --color-marca-contraste: var(--mt-color-marca-contraste);
+  --color-acento: var(--mt-color-acento);
+  --color-acento-suave: var(--mt-color-acento-suave);
+  --color-foco: var(--mt-color-foco);
+  --color-verde: var(--mt-color-verde);
+  --color-verde-suave: var(--mt-color-verde-suave);
+  --color-amarillo: var(--mt-color-amarillo);
+  --color-amarillo-suave: var(--mt-color-amarillo-suave);
+  --color-rojo: var(--mt-color-rojo);
+  --color-rojo-suave: var(--mt-color-rojo-suave);
+
+  /* Primitivos de marca (fijos): bg-lila-600, text-malva-300… */
+  --color-lila-50: var(--mt-lila-50);
+  --color-lila-100: var(--mt-lila-100);
+  --color-lila-200: var(--mt-lila-200);
+  --color-lila-300: var(--mt-lila-300);
+  --color-lila-400: var(--mt-lila-400);
+  --color-lila-500: var(--mt-lila-500);
+  --color-lila-600: var(--mt-lila-600);
+  --color-lila-700: var(--mt-lila-700);
+  --color-lila-800: var(--mt-lila-800);
+  --color-lila-900: var(--mt-lila-900);
+  --color-lila-950: var(--mt-lila-950);
+  --color-malva-50: var(--mt-malva-50);
+  --color-malva-100: var(--mt-malva-100);
+  --color-malva-200: var(--mt-malva-200);
+  --color-malva-300: var(--mt-malva-300);
+  --color-malva-400: var(--mt-malva-400);
+  --color-malva-500: var(--mt-malva-500);
+  --color-malva-600: var(--mt-malva-600);
+  --color-malva-700: var(--mt-malva-700);
+  --color-ciruela-700: var(--mt-ciruela-700);
+  --color-ciruela-800: var(--mt-ciruela-800);
+  --color-ciruela-900: var(--mt-ciruela-900);
+  --color-ciruela-950: var(--mt-ciruela-950);
+  --color-bruma-50: var(--mt-bruma-50);
+  --color-bruma-100: var(--mt-bruma-100);
+  --color-bruma-200: var(--mt-bruma-200);
+  --color-bruma-300: var(--mt-bruma-300);
+  --color-bruma-800: var(--mt-bruma-800);
+  --color-bruma-900: var(--mt-bruma-900);
+  --color-bruma-950: var(--mt-bruma-950);
+
+  --color-verde-300: var(--mt-verde-300);
+  --color-verde-400: var(--mt-verde-400);
+  --color-verde-500: var(--mt-verde-500);
+  --color-verde-600: var(--mt-verde-600);
+  --color-ambar-300: var(--mt-ambar-300);
+  --color-ambar-400: var(--mt-ambar-400);
+  --color-ambar-500: var(--mt-ambar-500);
+  --color-ambar-600: var(--mt-ambar-600);
+  --color-rojo-300: var(--mt-rojo-300);
+  --color-rojo-400: var(--mt-rojo-400);
+  --color-rojo-500: var(--mt-rojo-500);
+  --color-rojo-600: var(--mt-rojo-600);
+
+  --radius-xs: var(--mt-radio-xs);
+  --radius-sm: var(--mt-radio-sm);
+  --radius-md: var(--mt-radio-md);
+  --radius-lg: var(--mt-radio-lg);
+  --radius-xl: var(--mt-radio-xl);
+  --radius-2xl: var(--mt-radio-2xl);
+
+  --shadow-xs: var(--mt-sombra-xs);
+  --shadow-sm: var(--mt-sombra-sm);
+  --shadow-md: var(--mt-sombra-md);
+  --shadow-lg: var(--mt-sombra-lg);
+  --shadow-brillo: var(--mt-sombra-brillo);
+  --shadow-realce: var(--mt-sombra-realce);
+
+  --ease-estandar: var(--mt-curva-estandar);
+  --ease-entrada: var(--mt-curva-entrada);
+  --ease-enfasis: var(--mt-curva-enfasis);
+
+  --text-2xs: var(--mt-texto-2xs);
+  --text-2xs--line-height: var(--mt-texto-2xs-alto);
+  --text-display: var(--mt-texto-display);
+  --text-display--line-height: var(--mt-texto-display-alto);
+  --text-display--letter-spacing: var(--mt-texto-display-tracking);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    background: var(--mt-color-fondo);
+  }
+  body {
+    min-height: 100dvh;
+    background: transparent;
+    color: var(--mt-color-tinta);
+    font-family: var(--mt-fuente-sans);
+    font-size: var(--mt-texto-base);
+    line-height: var(--mt-texto-base-alto);
+    font-feature-settings: "tnum" 1;
+    transition: background-color var(--mt-duracion-base) var(--mt-curva-estandar), color var(--mt-duracion-base) var(--mt-curva-estandar);
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--mt-fuente-display);
+    color: var(--mt-color-titulo);
+    letter-spacing: -0.015em;
+  }
+  ::selection {
+    background: var(--mt-color-marca-suave);
+    color: var(--mt-color-marca);
+  }
+  :focus-visible {
+    outline: 2px solid var(--mt-color-foco);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* Tarjeta con volumen: degradado sutil, brillo superior y sombra lila. */
+@utility tarjeta {
+  @apply rounded-2xl border border-linea;
+  background: var(--mt-gradiente-superficie);
+  backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: var(--mt-sombra-realce), var(--mt-sombra-sm);
+}
+/* Tarjeta que reacciona al cursor (listas, KPIs, accesos). */
+/*
+ * Tarjeta con luz: un reflejo lila sigue al cursor (--mx/--my, los fija Shell) y al pasar
+ * el mouse aparece un borde degradado lila → malva. Sin desplazamiento (gráficos, tablas).
+ */
+@utility tarjeta-luz {
+  @apply tarjeta relative;
+  transition: box-shadow var(--mt-duracion-base) var(--mt-curva-estandar);
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, -30%), color-mix(in oklab, var(--mt-lila-400) 14%, transparent), transparent 45%);
+    opacity: 0;
+    transition: opacity var(--mt-duracion-lenta) var(--mt-curva-estandar);
+    pointer-events: none;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--mt-lila-400), var(--mt-malva-400) 50%, transparent 85%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity var(--mt-duracion-lenta) var(--mt-curva-estandar);
+    pointer-events: none;
+  }
+  &:hover::before,
+  &:hover::after {
+    opacity: 1;
+  }
+  &:hover {
+    box-shadow: var(--mt-sombra-realce), var(--mt-sombra-md);
+  }
+}
+/* Tarjeta viva: como tarjeta-luz y además se eleva (listas, KPIs, accesos). */
+@utility tarjeta-viva {
+  @apply tarjeta-luz;
+  transition:
+    transform var(--mt-duracion-base) var(--mt-curva-enfasis),
+    box-shadow var(--mt-duracion-base) var(--mt-curva-estandar);
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-3.5 py-2 text-sm font-semibold whitespace-nowrap select-none disabled:cursor-not-allowed disabled:opacity-50;
+  transition:
+    background-color var(--mt-duracion-rapida) var(--mt-curva-estandar),
+    color var(--mt-duracion-rapida) var(--mt-curva-estandar),
+    box-shadow var(--mt-duracion-base) var(--mt-curva-estandar),
+    transform var(--mt-duracion-rapida) var(--mt-curva-estandar),
+    filter var(--mt-duracion-rapida) var(--mt-curva-estandar);
+  &:active:not(:disabled) {
+    transform: translateY(1px) scale(0.985);
+  }
+}
+/* Primario satinado: degradado lila con brillo interno y un destello que cruza al pasar el mouse. */
+@utility btn-primario {
+  @apply btn relative overflow-hidden text-white;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.35) 50%, transparent 70%);
+    transform: translateX(-120%);
+    pointer-events: none;
+  }
+  &:hover:not(:disabled)::after {
+    transform: translateX(120%);
+    transition: transform 700ms var(--mt-curva-estandar);
+  }
+  & svg {
+    transition: transform var(--mt-duracion-base) var(--mt-curva-enfasis);
+  }
+  &:hover:not(:disabled) svg {
+    transform: translateX(1px) scale(1.08);
+  }
+  background: linear-gradient(180deg, var(--mt-lila-500) 0%, var(--mt-lila-600) 55%, var(--mt-lila-700) 100%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.25), 0 1px 2px rgb(42 18 88 / 0.3), 0 6px 16px -8px var(--mt-lila-600);
+  &:hover:not(:disabled) {
+    filter: brightness(1.07) saturate(1.05);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.3), var(--mt-sombra-brillo);
+  }
+}
+/* Secundario con color: tinte lila (nunca «perdido» sobre el fondo). */
+@utility btn-secundario {
+  @apply btn border border-marca/20 text-marca hover:-translate-y-px hover:border-marca/45 hover:shadow-md;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--mt-color-marca-suave) 70%, var(--mt-color-superficie)), var(--mt-color-marca-suave));
+  box-shadow: var(--mt-sombra-realce), var(--mt-sombra-xs);
+  &:hover:not(:disabled) {
+    background: linear-gradient(180deg, var(--mt-color-marca-suave), color-mix(in oklab, var(--mt-color-marca) 14%, var(--mt-color-marca-suave)));
+  }
+}
+@utility btn-fantasma {
+  @apply btn font-semibold text-marca/80 hover:bg-marca-suave hover:text-marca;
+}
+@utility btn-peligro {
+  @apply btn border border-rojo/30 bg-superficie text-rojo hover:bg-rojo-suave;
+}
+/* Botón translúcido para usar dentro de banners satinados. */
+@utility btn-vidrio {
+  @apply btn border border-white/25 bg-white/10 text-white backdrop-blur-md hover:border-white/45 hover:bg-white/20;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.2);
+}
+/* Campo relleno: fondo hundido que se ilumina al enfocar. */
+@utility campo {
+  @apply w-full rounded-xl border border-transparent bg-hundido px-3 py-2 text-sm text-tinta placeholder:text-tinta-tenue hover:border-linea-fuerte/70 focus:border-marca/60 focus:bg-superficie focus:outline-none focus:ring-4 focus:ring-marca/15 disabled:opacity-60;
+  transition:
+    border-color var(--mt-duracion-rapida) var(--mt-curva-estandar),
+    background-color var(--mt-duracion-rapida) var(--mt-curva-estandar),
+    box-shadow var(--mt-duracion-rapida) var(--mt-curva-estandar);
+}
+@utility etiqueta {
+  @apply mb-1 block text-xs font-semibold text-tinta-suave;
+}
+@utility num {
+  @apply text-right tabular-nums whitespace-nowrap;
+}
+/* Palabra clave en serif itálica, como en el manual. */
+@utility acento-serif {
+  font-family: var(--mt-fuente-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+@utility texto-gradiente {
+  background: var(--mt-gradiente-marca);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility fondo-marca {
+  background: var(--mt-gradiente-profundo);
+  color: #fff;
+}
+/* Banner satinado: la firma visual de Martha (malla de brillos lila sobre ciruela). */
+@utility banner {
+  @apply relative isolate overflow-clip rounded-3xl text-white;
+  background: var(--mt-gradiente-profundo);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.18), var(--mt-sombra-brillo);
+}
+/* Banda suave para encabezados de página. */
+@utility banda {
+  @apply relative isolate overflow-clip rounded-3xl border border-linea;
+  background: var(--mt-gradiente-banda);
+  box-shadow: var(--mt-sombra-realce), var(--mt-sombra-xs);
+}
+
+@layer components {
+  .tabla {
+    @apply w-full text-sm;
+  }
+  .tabla thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+  }
+  .tabla th {
+    @apply border-b border-linea bg-hundido/80 px-3 py-2.5 text-left text-xs font-bold whitespace-nowrap text-tinta-suave uppercase;
+    letter-spacing: 0.05em;
+    font-size: var(--mt-texto-2xs);
+  }
+  .tabla thead th:first-child {
+    border-top-left-radius: 0.75rem;
+  }
+  .tabla thead th:last-child {
+    border-top-right-radius: 0.75rem;
+  }
+  .tabla tbody tr:nth-child(even) {
+    background: color-mix(in oklab, var(--mt-color-hundido) 35%, transparent);
+  }
+  /* Fila activa: tinte lila y barra de acento a la izquierda. */
+  .tabla tbody tr:hover {
+    background: color-mix(in oklab, var(--mt-color-marca-suave) 80%, transparent);
+    box-shadow: inset 3px 0 0 var(--mt-color-marca);
+  }
+  .tabla td {
+    @apply border-b border-linea/70 px-3 py-2.5 align-middle;
+  }
+  .tabla tbody tr {
+    transition: background-color var(--mt-duracion-rapida) var(--mt-curva-estandar);
+  }
+  .tabla tr:last-child td {
+    @apply border-b-0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Transición circular de cambio de tema (SelectorTema). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* ---------------------------------------------------------------------------
+ * Atmósfera del fondo: aurora que deriva + malla tipo powernet (FondoAurora).
+ * ------------------------------------------------------------------------- */
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--mt-color-fondo);
+}
+.aurora__mancha {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  will-change: transform;
+}
+.aurora__mancha--1 {
+  width: 46vw;
+  height: 46vw;
+  top: -14vw;
+  right: -8vw;
+  background: var(--mt-aurora1);
+  animation: aurora-a 26s ease-in-out infinite alternate;
+}
+.aurora__mancha--2 {
+  width: 38vw;
+  height: 38vw;
+  bottom: -16vw;
+  left: 8vw;
+  background: var(--mt-aurora2);
+  animation: aurora-b 32s ease-in-out infinite alternate;
+}
+.aurora__mancha--3 {
+  width: 30vw;
+  height: 30vw;
+  top: 30vh;
+  left: 42vw;
+  background: var(--mt-aurora3);
+  animation: aurora-c 38s ease-in-out infinite alternate;
+}
+/* Malla de puntos (tejido powernet), que se desvanece hacia abajo. */
+.aurora__malla {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--mt-malla) 1.1px, transparent 1.3px);
+  background-size: 18px 18px;
+  mask-image: linear-gradient(180deg, #000 0%, rgb(0 0 0 / 0.35) 60%, transparent 100%);
+}
+@keyframes aurora-a {
+  to { transform: translate(-12vw, 10vh) scale(1.15); }
+}
+@keyframes aurora-b {
+  to { transform: translate(14vw, -12vh) scale(0.9); }
+}
+@keyframes aurora-c {
+  to { transform: translate(-10vw, -8vh) scale(1.2); }
+}
+
+/* Botones dentro del banner satinado: el primario se vuelve blanco y el resto, vidrio.
+   Excepción: lo que está dentro de una tarjeta normal (.superficie-normal), como el login. */
+.banner .btn-primario:not(.superficie-normal *) {
+  background: #fff;
+  color: var(--mt-lila-800);
+  box-shadow: inset 0 -1px 0 rgb(42 18 88 / 0.08), 0 8px 20px -8px rgb(22 5 48 / 0.6);
+}
+.banner .btn-secundario:not(.superficie-normal *),
+.banner .btn-fantasma:not(.superficie-normal *),
+.banner .btn-peligro:not(.superficie-normal *) {
+  @apply border border-white/25 text-white backdrop-blur-md;
+  background: rgb(255 255 255 / 0.12);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.2);
+}
+.banner .btn-secundario:hover:not(:disabled):not(.superficie-normal *),
+.banner .btn-fantasma:hover:not(:disabled):not(.superficie-normal *) {
+  @apply border-white/45 text-white;
+  background: rgb(255 255 255 / 0.22);
+}
+.banner .btn-peligro:hover:not(:disabled):not(.superficie-normal *) {
+  background: color-mix(in oklab, var(--mt-rojo-600) 75%, transparent);
+}
+
+/* Contenedores con desplazamiento horizontal sin barra visible (pestañas, chips). */
+.sin-barra {
+  scrollbar-width: none;
+}
+.sin-barra::-webkit-scrollbar {
+  display: none;
+}
+
+/* Selects de formulario con flecha propia (los filtros usan ChipSelect). */
+select.campo {
+  appearance: none;
+  padding-right: 2.25rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237A43E3' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  cursor: pointer;
+}
+
+/* Deslizador de la meta de margen: pista lila rellena hasta el valor (--valor). */
+.rango {
+  width: 100%;
+  height: 1.5rem;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+.rango::-webkit-slider-runnable-track {
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, var(--mt-lila-600), var(--mt-malva-500)) 0 / var(--valor, 50%) 100% no-repeat, var(--mt-color-hundido);
+}
+.rango::-moz-range-track {
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: var(--mt-color-hundido);
+}
+.rango::-moz-range-progress {
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, var(--mt-lila-600), var(--mt-malva-500));
+}
+.rango::-webkit-slider-thumb {
+  appearance: none;
+  margin-top: -0.4rem;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 9999px;
+  background: #fff;
+  border: 3px solid var(--mt-lila-600);
+  box-shadow: 0 4px 12px -2px rgb(122 67 227 / 0.55);
+  transition: transform 150ms var(--mt-curva-enfasis);
+}
+.rango::-moz-range-thumb {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+  background: #fff;
+  border: 3px solid var(--mt-lila-600);
+}
+.rango:active::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+.rango:focus-visible {
+  outline: none;
+}
+.rango:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--mt-lila-500) 30%, transparent);
+}
+
+/* Selector de tema sobre el banner: vidrio con íconos blancos. */
+.banner [role="radiogroup"][aria-label="Tema"] {
+  @apply border-white/20 bg-white/10 backdrop-blur-md;
+}
+.banner [role="radiogroup"][aria-label="Tema"] [role="radio"] {
+  @apply text-white/70 hover:text-white;
+}
+.banner [role="radiogroup"][aria-label="Tema"] [role="radio"][aria-checked="true"] {
+  @apply bg-white text-lila-800;
+}
+
+/* Tarjeta de acceso: borde degradado lila → malva, franja superior y sombra profunda. */
+.tarjeta-acceso {
+  position: relative;
+  border-radius: 1.75rem;
+  padding: 2rem;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--mt-color-superficie), var(--mt-color-superficie)) padding-box,
+    linear-gradient(140deg, var(--mt-lila-300), var(--mt-malva-300) 45%, color-mix(in oklab, var(--mt-color-linea) 60%, transparent) 75%) border-box;
+  box-shadow:
+    0 40px 90px -30px rgb(22 5 48 / 0.7),
+    0 12px 30px -12px rgb(22 5 48 / 0.35);
+}
+.tarjeta-acceso::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 2rem;
+  right: 2rem;
+  height: 3px;
+  border-radius: 0 0 9999px 9999px;
+  background: var(--mt-gradiente-marca);
+}
+@media (min-width: 640px) {
+  .tarjeta-acceso {
+    padding: 2.5rem;
+  }
+}
