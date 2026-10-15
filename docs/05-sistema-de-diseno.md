@@ -51,7 +51,7 @@ Todo respeta «reducir movimiento»: la aurora queda quieta (regla CSS global) y
 | **Pestañas tipo segmento** con píldora deslizante | Coherentes con los chips. |
 | **Productos en tarjetas** con barra de margen frente al objetivo (alternable con tabla) | El margen se lee de un vistazo. |
 
-El sistema visual de Martha se deriva del **Manual de Marca LinkTIC v3 (agosto 2026)**. La guía viva está en la app, en **`/sistema-diseno`**.
+El sistema visual de Martha se deriva del **Manual de Marca LinkTIC v3 (agosto 2026)**. La guía visual (tokens, tipografía, componentes y logos) vive fuera de la app, en el artifact «Martha»: https://claude.ai/artifact/Wfwzqmxyb8QbUVCecwf7Tp
 
 > El manual indica que toda aplicación creativa de la marca LinkTIC debe aprobarla el equipo de diseño. Martha **no usa el logotipo ni el pájaro de LinkTIC**: toma la paleta, la tipografía y el lenguaje gráfico, y tiene su propio isotipo. Si Martha se presenta como producto LinkTIC, valida el resultado con ese equipo.
 

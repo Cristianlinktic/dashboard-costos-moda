@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
-import { Boxes, Calculator, Factory, LayoutDashboard, LogOut, Menu, Package, Palette, Settings, ShieldAlert, Users, X } from "lucide-react";
+import { Boxes, Calculator, Factory, LayoutDashboard, LogOut, Menu, Package, Settings, ShieldAlert, Users, X } from "lucide-react";
 import { RUTAS_PUBLICAS, useMartha } from "@/lib/datos/MarthaProvider";
 import { ROLES } from "@/lib/usuarios/tipos";
 import { LogoMartha } from "./marca/LogoMartha";
@@ -20,7 +20,6 @@ const NAVEGACION = [
   { href: "/proveedores", etiqueta: "Proveedores", icono: Factory, grupo: "Operación" },
   { href: "/usuarios", etiqueta: "Usuarios", icono: Users, grupo: "Organización", soloAdmin: true },
   { href: "/configuracion", etiqueta: "Configuración", icono: Settings, grupo: "Organización" },
-  { href: "/sistema-diseno", etiqueta: "Sistema de diseño", icono: Palette, grupo: "Organización" },
 ];
 
 /** Fondo de la app: aurora lila/malva/durazno que deriva y malla tipo powernet. */
