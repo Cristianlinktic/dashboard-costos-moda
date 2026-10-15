@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { Activity, Plus, ShieldCheck, UserCheck, Users, UserX } from "lucide-react";
+import { Activity, KeyRound, Plus, ShieldCheck, UserCheck, Users, UserX } from "lucide-react";
 import type { Rol } from "@/tipos";
 import { nuevoId, useMartha } from "@/lib/datos/MarthaProvider";
 import { ROLES, validarNuevoUsuario, type DatosNuevoUsuario, type UsuarioEquipo } from "@/lib/usuarios/tipos";
@@ -44,6 +44,9 @@ function GestionUsuarios() {
   const [usuarios, setUsuarios] = useState<UsuarioEquipo[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [creando, setCreando] = useState(false);
+  const [claveDe, setClaveDe] = useState<UsuarioEquipo | null>(null);
+  const [nuevaClave, setNuevaClave] = useState("");
+  const [aviso, setAviso] = useState<string | null>(null);
   const [busqueda, setBusqueda] = useState("");
   const [filtroRol, setFiltroRol] = useState<string>();
   const [filtroEstado, setFiltroEstado] = useState<string>();
@@ -75,12 +78,13 @@ function GestionUsuarios() {
     cargar();
   }, [cargar]);
 
-  async function actualizar(u: UsuarioEquipo, cambios: { rol?: Rol; activo?: boolean }) {
+  async function actualizar(u: UsuarioEquipo, cambios: { rol?: Rol; activo?: boolean; clave?: string }) {
     setError(null);
     try {
       if (u.id === usuario?.id && (cambios.rol === "colaborador" || cambios.activo === false)) throw new Error("No puedes quitarte el rol de administrador ni desactivarte a ti mismo.");
       if (modo === "demo") {
-        const lista = leerDemo().map((x) => (x.id === u.id ? { ...x, ...cambios } : x));
+        const { clave: _clave, ...resto } = cambios;
+        const lista = leerDemo().map((x) => (x.id === u.id ? { ...x, ...resto } : x));
         escribirDemo(lista);
         setUsuarios(lista);
       } else {
@@ -137,6 +141,11 @@ function GestionUsuarios() {
       {error && (
         <div className="mb-4">
           <Aviso tono="rojo">{error}</Aviso>
+        </div>
+      )}
+      {aviso && (
+        <div className="mb-4" role="status">
+          <Aviso tono="verde">{aviso}</Aviso>
         </div>
       )}
 
@@ -230,8 +239,12 @@ function GestionUsuarios() {
               titulo: "",
               acciones: true,
               alinear: "der",
-              render: (u) =>
-                u.id === usuario?.id ? null : u.activo ? (
+              render: (u) => (
+                <span className="inline-flex flex-wrap justify-end gap-1">
+                  <button className="btn-fantasma px-2.5 py-1 text-xs" onClick={() => { setClaveDe(u); setNuevaClave(""); }}>
+                    <KeyRound className="size-3.5" /> Contraseña
+                  </button>
+                  {u.id === usuario?.id ? null : u.activo ? (
                   <button className="btn-fantasma px-2.5 py-1 text-xs hover:bg-rojo-suave hover:text-rojo" onClick={() => window.confirm(`¿Desactivar a ${u.nombre}? No podrá iniciar sesión.`) && actualizar(u, { activo: false })}>
                     <UserX className="size-3.5" /> Desactivar
                   </button>
@@ -239,7 +252,9 @@ function GestionUsuarios() {
                   <button className="btn-secundario px-2.5 py-1 text-xs" onClick={() => actualizar(u, { activo: true })}>
                     <UserCheck className="size-3.5" /> Reactivar
                   </button>
-                ),
+                  )}
+                </span>
+              ),
             },
           ]}
         />
@@ -255,6 +270,33 @@ function GestionUsuarios() {
           <p className="mt-1 text-tinta-suave">Ve todo y puede crear y editar productos, variantes, costos, lotes y escenarios. No puede eliminar.</p>
         </div>
       </div>
+
+      <Modal abierto={!!claveDe} titulo={`Nueva contraseña · ${claveDe?.nombre ?? ""}`} onCerrar={() => setClaveDe(null)} ancho="max-w-md">
+        <form
+          className="space-y-4"
+          onSubmit={async (e) => {
+            e.preventDefault();
+            if (!claveDe || nuevaClave.length < 8) return;
+            await actualizar(claveDe, { clave: nuevaClave });
+            setAviso(`Contraseña actualizada para ${claveDe.nombre}.`);
+            setTimeout(() => setAviso(null), 4000);
+            setClaveDe(null);
+          }}
+        >
+          <p className="text-sm text-tinta-suave">Compártela por un canal seguro; la persona puede seguir usándola o pedirte otra.</p>
+          <Campo etiqueta="Contraseña nueva" ayuda="Mínimo 8 caracteres.">
+            <input className="campo" type="text" autoComplete="new-password" minLength={8} required value={nuevaClave} onChange={(e) => setNuevaClave(e.target.value)} />
+          </Campo>
+          <div className="flex justify-end gap-2">
+            <button type="button" className="btn-secundario" onClick={() => setClaveDe(null)}>
+              Cancelar
+            </button>
+            <button className="btn-primario" disabled={nuevaClave.length < 8}>
+              Guardar contraseña
+            </button>
+          </div>
+        </form>
+      </Modal>
 
       <Modal abierto={creando} titulo="Nuevo usuario" onCerrar={() => setCreando(false)} ancho="max-w-lg">
         <FormularioUsuario onCrear={crear} onCancelar={() => setCreando(false)} />
@@ -317,7 +359,7 @@ function FormularioUsuario({ onCrear, onCancelar }: { onCrear: (d: DatosNuevoUsu
           <input type="radio" name="metodo" checked={d.metodo === "clave"} onChange={() => setD({ ...d, metodo: "clave" })} className="mt-1 accent-marca" />
           <span>
             Asignar contraseña temporal
-            <span className="block text-xs text-tinta-tenue">Compártela por un canal seguro; puede cambiarla con «Olvidé mi contraseña».</span>
+            <span className="block text-xs text-tinta-tenue">Compártela por un canal seguro. Si la olvida, un administrador puede asignarle otra.</span>
           </span>
         </label>
       </fieldset>

@@ -66,7 +66,6 @@ Martha puede vivir en un proyecto de Supabase **compartido con otras aplicacione
 7. **Authentication → Emails → Templates** (recomendado, funciona aunque el usuario abra el correo en otro navegador):
    ⚠ Las plantillas de correo son globales del proyecto: si otras apps las usan, coordina el cambio o déjalas por defecto (Martha también funciona con ellas).
    - *Invite user*: enlace `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=invite&next=/auth/actualizar-clave`
-   - *Reset password*: enlace `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery&next=/auth/actualizar-clave`
 
    Con las plantillas por defecto también funciona: `/auth/actualizar-clave` y `/auth/callback` procesan los tokens del enlace.
 8. Configura un SMTP propio en *Authentication → Emails → SMTP Settings* si vas a enviar invitaciones a todo el equipo (el SMTP de prueba de Supabase tiene un límite bajo de correos por hora).
@@ -111,6 +110,16 @@ El script crea la organización, su configuración por defecto y el usuario admi
 
 Luego entra a `/acceso` con ese correo y contraseña.
 
+### Datos de prueba (opcional)
+
+Carga en tu organización las mismas fajas del modo demo (proveedores, productos, variantes, lotes con estimado vs. real, costos en COP/USD/EUR, historial de precios y eventos):
+
+```bash
+npm run cargar-demo                     # si solo hay una organización
+npm run cargar-demo -- --org <uuid>     # una organización específica
+npm run cargar-demo -- --forzar         # aunque ya tenga productos
+```
+
 ## 4. Gestionar usuarios
 
 En **Usuarios** (solo visible y accesible para administradores):
@@ -120,6 +129,7 @@ En **Usuarios** (solo visible y accesible para administradores):
 | Crear con contraseña temporal | `POST /api/usuarios` → `auth.admin.createUser` con correo confirmado. Comparte la clave por un canal seguro. |
 | Invitar por correo | `POST /api/usuarios` → `auth.admin.inviteUserByEmail`; la persona define su contraseña en `/auth/actualizar-clave`. |
 | Cambiar rol | `PATCH /api/usuarios/{id}` → actualiza `app_metadata.rol`. |
+| Asignar contraseña | `PATCH /api/usuarios/{id}` con `clave` → no hay recuperación por cuenta propia; el admin asigna una nueva. |
 | Desactivar / reactivar | `PATCH /api/usuarios/{id}` → `app_metadata.activo` + `ban_duration` (no puede iniciar sesión; la RLS le niega todo). ⚠ El baneo es de la cuenta de Supabase Auth: si la misma persona usa otra app del proyecto con ese correo, también queda bloqueada allí. |
 
 Cada ruta valida en el servidor que el token pertenece a un usuario con `app_metadata.app = 'martha'` y **perfil de admin activo de la misma organización** antes de usar la service role. Solo opera sobre usuarios de Martha de esa organización. Un admin no puede quitarse su propio rol ni desactivarse.

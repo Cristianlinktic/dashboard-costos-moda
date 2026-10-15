@@ -55,7 +55,7 @@ flowchart TD
   G --> I[Correo de invitación →<br/>/auth/confirm → /auth/actualizar-clave]
   H --> J[El usuario inicia sesión]
   J --> K{¿Olvidó la contraseña?}
-  K -- sí --> L[/acceso/recuperar → correo →<br/>/auth/actualizar-clave/]
+  K -- sí --> L[El administrador le asigna una<br/>contraseña temporal o la invita de nuevo]
 ```
 
 - La ruta de servidor valida el token del llamante y que su perfil sea **admin activo** de la misma organización antes de usar la service role.

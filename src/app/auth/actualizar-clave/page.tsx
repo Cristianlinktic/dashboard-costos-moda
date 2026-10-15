@@ -49,9 +49,9 @@ export default function PaginaActualizarClave() {
 
   if (sesionLista === false)
     return (
-      <MarcoAcceso titulo="Enlace no válido" descripcion="El enlace venció o ya fue usado.">
-        <Link href="/acceso/recuperar" className="btn-primario w-full">
-          Solicitar un enlace nuevo
+      <MarcoAcceso titulo="Enlace no válido" descripcion="El enlace venció o ya fue usado. Pide a tu administrador que te envíe una nueva invitación o te asigne una contraseña.">
+        <Link href="/acceso" className="btn-primario w-full">
+          Ir a iniciar sesión
         </Link>
       </MarcoAcceso>
     );

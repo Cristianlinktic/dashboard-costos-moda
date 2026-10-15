@@ -1,4 +1,4 @@
-// Cambiar rol o activar/desactivar un usuario de la organización (solo administradores).
+// Cambiar rol, activar/desactivar o asignar contraseña a un usuario de la organización (solo administradores).
 import { APP_ID } from "@/lib/supabase/cliente";
 import { ErrorHttp, exigirAdmin, respuestaError } from "@/lib/supabase/servidor";
 import type { Rol } from "@/tipos";
@@ -11,7 +11,9 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   try {
     const { id } = await params;
     const { llamante, admin } = await exigirAdmin(request);
-    const cambios = (await request.json()) as { rol?: Rol; activo?: boolean };
+    const cambios = (await request.json()) as { rol?: Rol; activo?: boolean; clave?: string };
+    if (cambios.clave !== undefined && (typeof cambios.clave !== "string" || cambios.clave.length < 8))
+      throw new ErrorHttp(400, "La contraseña debe tener al menos 8 caracteres.");
 
     if (cambios.rol !== undefined && cambios.rol !== "admin" && cambios.rol !== "colaborador")
       throw new ErrorHttp(400, "Rol inválido.");
@@ -35,6 +37,8 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
       app_metadata: nuevaMeta,
       // Un usuario desactivado no puede iniciar sesión ni refrescar su token.
       ...(cambios.activo !== undefined && { ban_duration: cambios.activo ? "none" : BANEO_INDEFINIDO }),
+      // Sin recuperación por cuenta propia: el administrador asigna una contraseña nueva.
+      ...(cambios.clave !== undefined && { password: cambios.clave }),
     });
     if (errUpd) throw new ErrorHttp(500, errUpd.message);
     // El trigger on_auth_user_app_metadata sincroniza la tabla perfiles.

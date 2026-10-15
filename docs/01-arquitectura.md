@@ -58,7 +58,7 @@ Martha es una aplicación web responsive para que un emprendedor de ecommerce (m
 
 ## 1.4 Autenticación, usuarios y roles
 
-- **Supabase Auth solo con correo y contraseña.** Inicio de sesión y «Olvidé mi contraseña» (enlace por correo → `/auth/actualizar-clave`).
+- **Supabase Auth solo con correo y contraseña.** Solo inicio de sesión: no hay recuperación de contraseña por cuenta propia; un administrador invita de nuevo o asigna una contraseña temporal. `/auth/actualizar-clave` se usa al aceptar una invitación.
 - **No hay registro público.** En Supabase se desactiva *Allow new users to sign up*; la app no tiene página ni enlace de registro.
 - **El primer admin y su organización** se crean con `npm run crear-admin` (o con `supabase/bootstrap_admin.sql`).
 - **Los demás usuarios los crea un admin** desde la sección **Usuarios** (solo visible para admin): nombre, correo, rol y contraseña temporal *o* invitación por correo. También puede cambiar roles y desactivar/reactivar cuentas.
@@ -101,7 +101,7 @@ martha/
 │   │   ├── productos/            ← lista, nuevo (asistente), [id] (detalle)
 │   │   ├── lotes/ simulador/ proveedores/ configuracion/
 │   │   ├── usuarios/             ← gestión de usuarios (solo admin)
-│   │   ├── acceso/               ← login y recuperar contraseña (sin registro)
+│   │   ├── acceso/               ← login (sin registro ni recuperación)
 │   │   ├── auth/                 ← callback/confirm de correo y actualizar contraseña
 │   │   └── api/                  ← usuarios (service role) y v1 (REST para integraciones)
 │   ├── components/               ← UI reutilizable (tarjetas, semáforo, gráficos, formularios)

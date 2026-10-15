@@ -69,14 +69,7 @@ export default function PaginaAcceso() {
           </div>
         )}
         <CampoAcceso etiqueta="Correo" icono={Mail} tipo="email" autoComplete="email" valor={correo} onCambio={setCorreo} autoFocus />
-        <div>
-          <CampoAcceso etiqueta="Contraseña" icono={Lock} tipo="password" autoComplete="current-password" valor={clave} onCambio={setClave} />
-          <div className="mt-2 text-right">
-            <Link href="/acceso/recuperar" className="text-xs font-semibold text-marca hover:underline">
-              ¿Olvidaste tu contraseña?
-            </Link>
-          </div>
-        </div>
+        <CampoAcceso etiqueta="Contraseña" icono={Lock} tipo="password" autoComplete="current-password" valor={clave} onCambio={setClave} />
         <BotonAcceso cargando={enviando} texto="Ingresar" textoCargando="Ingresando…" icono={ArrowRight} />
       </form>
     </MarcoAcceso>

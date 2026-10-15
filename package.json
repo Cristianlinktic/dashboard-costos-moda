@@ -12,7 +12,8 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "crear-admin": "node --env-file-if-exists=.env --env-file-if-exists=.env.local scripts/crear-admin.mjs",
-    "tokens": "node scripts/generar-tokens.mjs"
+    "tokens": "node scripts/generar-tokens.mjs",
+    "cargar-demo": "node --env-file-if-exists=.env --env-file-if-exists=.env.local scripts/cargar-demo.mjs"
   },
   "dependencies": {
     "@fontsource-variable/bricolage-grotesque": "5.3.0",
