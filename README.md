@@ -120,6 +120,16 @@ npm run cargar-demo -- --org <uuid>     # una organización específica
 npm run cargar-demo -- --forzar         # aunque ya tenga productos
 ```
 
+Los datos de prueba quedan en tu Supabase (schema `martha`). Para quitarlos sin tocar lo que hayas creado tú:
+
+```bash
+npm run borrar-demo                     # muestra qué se borraría (no borra nada)
+npm run borrar-demo -- --confirmar      # borra productos de prueba (con sus variantes, lotes, costos e historial),
+                                        # proveedores de prueba sin uso y tasas de cambio de prueba
+```
+
+También puedes borrar productos uno por uno desde la app (detalle del producto → papelera, solo administradores).
+
 ## 4. Gestionar usuarios
 
 En **Usuarios** (solo visible y accesible para administradores):
