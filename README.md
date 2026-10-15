@@ -17,7 +17,7 @@ Diseño y decisiones en [`docs/`](docs):
 
 Stack: Next.js 16 (App Router, TypeScript) · Tailwind CSS 4 · Supabase (Postgres, Auth, Storage) · Recharts · GSAP · Three.js · jsPDF · ExcelJS · Vitest.
 
-**Sistema de diseño**: lilas y morados sobre neutros, banner satinado y el lenguaje de líneas y nodos del Manual de Marca LinkTIC. Tokens en `src/design/tokens.ts` → `npm run tokens` genera el CSS (temas día y noche) y `public/design-tokens.json` (formato W3C). La guía (tokens, tipografía, componentes y logos) está en el artifact «Martha» de Claude: https://claude.ai/artifact/Wfwzqmxyb8QbUVCecwf7Tp
+**Sistema de diseño**: lilas y morados sobre neutros, banner satinado y el lenguaje de líneas y nodos del Manual de Marca LinkTIC. Tokens en `src/design/tokens.ts` → `npm run tokens` genera el CSS (temas día y noche) y `public/design-tokens.json` (formato W3C). La guía (tokens, tipografía, componentes y logos) está en el artifact «Martha» de Claude: https://claude.ai/artifact/LJDvWNNjYpFqigwGMrNdBH
 
 ---
 
