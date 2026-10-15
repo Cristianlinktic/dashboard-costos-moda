@@ -65,7 +65,7 @@ Martha puede vivir en un proyecto de Supabase **compartido con otras aplicacione
    - *Redirect URLs*: agrega `https://TU-DOMINIO/auth/callback`, `https://TU-DOMINIO/auth/actualizar-clave` y, para desarrollo, `http://localhost:3000/**`.
 7. **Authentication → Emails → Templates** (recomendado, funciona aunque el usuario abra el correo en otro navegador):
    ⚠ Las plantillas de correo son globales del proyecto: si otras apps las usan, coordina el cambio o déjalas por defecto (Martha también funciona con ellas).
-   - *Invite user*: enlace `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=invite&next=/auth/actualizar-clave`
+   - *Reset password*: enlace `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery&next=/auth/actualizar-clave`. Las invitaciones de Martha llegan con esta plantilla (la cuenta se crea con `createUser` y se envía un enlace de recuperación para definir la contraseña), así que conviene redactarla como «Define tu contraseña».
 
    Con las plantillas por defecto también funciona: `/auth/actualizar-clave` y `/auth/callback` procesan los tokens del enlace.
 8. Configura un SMTP propio en *Authentication → Emails → SMTP Settings* si vas a enviar invitaciones a todo el equipo (el SMTP de prueba de Supabase tiene un límite bajo de correos por hora).
@@ -139,7 +139,7 @@ En **Usuarios** (solo visible y accesible para administradores):
 | Acción | Cómo funciona |
 |---|---|
 | Crear con contraseña temporal | `POST /api/usuarios` → `auth.admin.createUser` con correo confirmado. Comparte la clave por un canal seguro. |
-| Invitar por correo | `POST /api/usuarios` → `auth.admin.inviteUserByEmail`; la persona define su contraseña en `/auth/actualizar-clave`. |
+| Invitar por correo | `POST /api/usuarios` → `auth.admin.createUser` (sin contraseña, con `app_metadata` completo desde el insert) + `auth.resetPasswordForEmail`; la persona define su contraseña en `/auth/actualizar-clave`. No se usa `inviteUserByEmail` porque no admite `app_metadata` y los triggers de `auth.users` (de Martha y de otras apps) filtran por `raw_app_meta_data->>'app'` al crearse la fila. |
 | Cambiar rol | `PATCH /api/usuarios/{id}` → actualiza `app_metadata.rol`. |
 | Asignar contraseña | `PATCH /api/usuarios/{id}` con `clave` → no hay recuperación por cuenta propia; el admin asigna una nueva. |
 | Desactivar / reactivar | `PATCH /api/usuarios/{id}` → `app_metadata.activo` + `ban_duration` (no puede iniciar sesión; la RLS le niega todo). ⚠ El baneo es de la cuenta de Supabase Auth: si la misma persona usa otra app del proyecto con ese correo, también queda bloqueada allí. |

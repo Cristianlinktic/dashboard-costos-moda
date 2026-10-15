@@ -72,7 +72,7 @@ Martha es una aplicación web responsive para que un emprendedor de ecommerce (m
  POST /api/usuarios  ──Bearer JWT──▶  exigirAdmin():                             
    {nombre, correo,                     auth.getUser(token) ───────────────────▶ Auth
     rol, metodo}                        perfiles (service role) → ¿admin activo?  Postgres
-                                        createUser / inviteUserByEmail
+                                        createUser (+ resetPasswordForEmail si es invitación)
                                           app_metadata = {organizacion_id, rol} ─▶ Auth
                                                                                    └─ trigger → perfiles
 ```

@@ -49,7 +49,7 @@ flowchart TD
   C --> D[Usuarios → + Nuevo usuario<br/>nombre, correo, rol]
   D --> E{Método}
   E -- Contraseña temporal --> F[POST /api/usuarios<br/>createUser con app_metadata]
-  E -- Invitación --> G[POST /api/usuarios<br/>inviteUserByEmail + app_metadata]
+  E -- Invitación --> G[POST /api/usuarios<br/>createUser con app_metadata<br/>+ resetPasswordForEmail]
   F --> H[Trigger sincronizar_perfil<br/>crea perfil]
   G --> H
   G --> I[Correo de invitación →<br/>/auth/confirm → /auth/actualizar-clave]

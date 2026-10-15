@@ -28,7 +28,7 @@ export async function GET(request: Request) {
           activo: p.activo,
           creadoEn: p.creado_en,
           ultimoAcceso: data.user?.last_sign_in_at ?? null,
-          invitacionPendiente: Boolean(data.user?.invited_at && !data.user?.last_sign_in_at),
+          invitacionPendiente: Boolean(data.user?.app_metadata?.alta === "invitacion" && !data.user?.last_sign_in_at),
         };
       }),
     );
@@ -52,30 +52,30 @@ export async function POST(request: Request) {
     const appMetadata = { app: APP_ID, organizacion_id: llamante.organizacionId, rol: datos.rol, activo: true };
     const userMetadata = { nombre: datos.nombre.trim() };
 
-    let id: string;
-    if (datos.metodo === "clave") {
-      const { data, error } = await admin.auth.admin.createUser({
-        email: correo,
-        password: datos.clave,
-        email_confirm: true,
-        user_metadata: userMetadata,
-        app_metadata: appMetadata,
-      });
-      if (error) throw new ErrorHttp(400, traducirError(error.message));
-      id = data.user.id;
-    } else {
+    // Siempre createUser con app_metadata completo DESDE EL INSERT: los triggers de auth.users
+    // (los de Martha y los de otras apps) filtran por raw_app_meta_data->>'app' al crearse la fila.
+    // Por eso no se usa inviteUserByEmail, que no admite app_metadata.
+    const invitar = datos.metodo === "invitacion";
+    const { data, error } = await admin.auth.admin.createUser({
+      email: correo,
+      // Invitación: sin contraseña conocida; la persona la define con el enlace que se envía abajo.
+      ...(invitar ? {} : { password: datos.clave }),
+      email_confirm: true,
+      user_metadata: userMetadata,
+      app_metadata: invitar ? { ...appMetadata, alta: "invitacion" } : appMetadata,
+    });
+    if (error) throw new ErrorHttp(400, traducirError(error.message));
+    const id = data.user.id;
+
+    if (invitar) {
       const sitio = process.env.NEXT_PUBLIC_SITE_URL ?? new URL(request.url).origin;
-      const { data, error } = await admin.auth.admin.inviteUserByEmail(correo, {
-        data: userMetadata,
+      const { error: errCorreo } = await admin.auth.resetPasswordForEmail(correo, {
         redirectTo: `${sitio}/auth/actualizar-clave`,
       });
-      if (error) throw new ErrorHttp(400, traducirError(error.message));
-      id = data.user.id;
-      // La invitación no admite app_metadata: se asigna enseguida (el trigger crea el perfil).
-      const { error: errMeta } = await admin.auth.admin.updateUserById(id, { app_metadata: appMetadata });
-      if (errMeta) {
+      if (errCorreo) {
+        // Sin el correo la cuenta quedaría inaccesible: se deshace para poder reintentar.
         await admin.auth.admin.deleteUser(id);
-        throw new ErrorHttp(500, errMeta.message);
+        throw new ErrorHttp(502, `No se pudo enviar el correo de invitación: ${errCorreo.message}`);
       }
     }
     return Response.json({ id }, { status: 201 });
