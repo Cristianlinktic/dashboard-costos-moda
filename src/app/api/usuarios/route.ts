@@ -1,6 +1,7 @@
 // Gestión de usuarios del equipo. Solo servidor: usa SUPABASE_SERVICE_ROLE_KEY tras validar
 // que quien llama es administrador activo de la organización.
 import { APP_ID } from "@/lib/supabase/cliente";
+import { correoAuth, correoVisible } from "@/lib/usuarios/correo";
 import { ErrorHttp, exigirAdmin, respuestaError } from "@/lib/supabase/servidor";
 import { validarNuevoUsuario, type DatosNuevoUsuario, type UsuarioEquipo } from "@/lib/usuarios/tipos";
 
@@ -22,7 +23,7 @@ export async function GET(request: Request) {
         return {
           id: p.id,
           nombre: p.nombre ?? "",
-          correo: p.correo ?? data.user?.email ?? "",
+          correo: correoVisible(p.correo ?? data.user?.email),
           rol: p.rol,
           activo: p.activo,
           creadoEn: p.creado_en,
@@ -44,7 +45,8 @@ export async function POST(request: Request) {
     const invalido = validarNuevoUsuario(datos);
     if (invalido) throw new ErrorHttp(400, invalido);
 
-    const correo = datos.correo.trim().toLowerCase();
+    // Cuenta propia de Martha (alias +martha): separada de la cuenta del mismo correo en otras apps.
+    const correo = correoAuth(datos.correo);
     // organizacion_id y rol van en app_metadata: el usuario no puede modificarlos.
     // app = 'martha' identifica al usuario como de esta app en auth.users (compartida con otras apps).
     const appMetadata = { app: APP_ID, organizacion_id: llamante.organizacionId, rol: datos.rol, activo: true };
@@ -83,7 +85,7 @@ export async function POST(request: Request) {
 }
 
 function traducirError(mensaje: string): string {
-  if (/already been registered|already exists/i.test(mensaje)) return "Ya existe un usuario con ese correo.";
+  if (/already been registered|already exists/i.test(mensaje)) return "Esa persona ya tiene cuenta en Martha.";
   if (/password/i.test(mensaje)) return "La contraseña no cumple la política de seguridad de Supabase.";
   return mensaje;
 }

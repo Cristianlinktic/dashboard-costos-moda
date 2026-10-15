@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import type { BaseDatos, Configuracion, Costo, Evento, Producto, Rol, TipoEvento, Variante } from "@/tipos";
 import { tasasVigentes, type Tasas } from "@/lib/calculos/motor";
 import { obtenerSupabase, perfilMartha, supabaseConfigurado } from "@/lib/supabase/cliente";
+import { correoVisible } from "@/lib/usuarios/correo";
 import { RepositorioDemo, RepositorioSupabase, type Coleccion, type Repositorio } from "./repositorio";
 
 export interface UsuarioActual {
@@ -109,8 +110,8 @@ export function MarthaProvider({ children }: { children: ReactNode }) {
           repo.current = new RepositorioSupabase(supabase, perfil.organizacion_id);
           setUsuario({
             id: data.user.id,
-            nombre: perfil.nombre ?? data.user.email ?? "",
-            correo: data.user.email ?? "",
+            nombre: perfil.nombre ?? correoVisible(data.user.email),
+            correo: correoVisible(data.user.email),
             rol: perfil.rol,
             organizacionId: perfil.organizacion_id,
           });

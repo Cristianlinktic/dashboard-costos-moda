@@ -7,6 +7,7 @@ import { MarcoAcceso } from "@/components/MarcoAcceso";
 import { AlertCircle, ArrowRight, Lock, Mail } from "lucide-react";
 import { Aviso } from "@/components/ui";
 import { BotonAcceso, CampoAcceso } from "@/components/CampoAcceso";
+import { correoAuth } from "@/lib/usuarios/correo";
 import { obtenerSupabase, perfilMartha, supabaseConfigurado } from "@/lib/supabase/cliente";
 
 const ERRORES: Record<string, string> = {
@@ -40,7 +41,7 @@ export default function PaginaAcceso() {
     setEnviando(true);
     setError(null);
     const supabase = obtenerSupabase();
-    const { data, error } = await supabase.auth.signInWithPassword({ email: correo.trim(), password: clave });
+    const { data, error } = await supabase.auth.signInWithPassword({ email: correoAuth(correo), password: clave });
     if (error) {
       setEnviando(false);
       setError(/invalid/i.test(error.message) ? "Correo o contraseña incorrectos." : /banned/i.test(error.message) ? ERRORES["sin-acceso"] : error.message);

@@ -49,8 +49,15 @@ if (errOrg) {
 const { error: errCfg } = await admin.from("configuraciones").insert({ organizacion_id: org.id });
 if (errCfg) console.warn("⚠ No se pudo crear la configuración por defecto:", errCfg.message);
 
+// Cuenta propia de Martha con alias +martha (misma regla que src/lib/usuarios/correo.ts):
+// separada de la cuenta del mismo correo en otras apps del proyecto.
+const limpio = correo.trim().toLowerCase();
+const arroba = limpio.lastIndexOf("@");
+const local = limpio.slice(0, arroba);
+const correoAuth = local.endsWith("+martha") ? limpio : `${local}+martha@${limpio.slice(arroba + 1)}`;
+
 const { data: creado, error: errUsuario } = await admin.auth.admin.createUser({
-  email: correo,
+  email: correoAuth,
   password: clave,
   email_confirm: true,
   user_metadata: { nombre: nombre ?? correo.split("@")[0] },
@@ -67,5 +74,5 @@ const { data: perfil } = await admin.from("perfiles").select("rol").eq("id", cre
 if (!perfil) console.warn("⚠ El usuario se creó pero no tiene perfil en martha.perfiles: revisa que el trigger martha_on_auth_user_created exista.");
 
 console.log("✔ Organización creada:", empresa, `(${org.id})`);
-console.log("✔ Administrador creado:", creado.user.email);
+console.log("✔ Administrador creado:", limpio, `(cuenta de Martha: ${correoAuth})`);
 console.log("  Inicia sesión en /acceso con ese correo y contraseña.");

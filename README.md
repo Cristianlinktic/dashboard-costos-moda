@@ -132,6 +132,8 @@ También puedes borrar productos uno por uno desde la app (detalle del producto 
 
 ## 4. Gestionar usuarios
 
+**Cuentas propias de Martha en un proyecto compartido.** Supabase permite una sola cuenta por correo en todo el proyecto. Para que una persona tenga en Martha una contraseña distinta a la de tus otras apps, Martha crea su cuenta con un alias del correo (`nombre+martha@dominio`). La persona siempre escribe su correo normal: el login, la creación de usuarios y `crear-admin` lo traducen solos, y la lista de Usuarios muestra el correo normal. Las invitaciones llegan al mismo buzón en proveedores que aceptan alias con `+` (Gmail, Google Workspace, Outlook); si tu dominio no los acepta, usa «contraseña temporal». Desactivar a alguien en Martha no afecta su cuenta en otras apps.
+
 En **Usuarios** (solo visible y accesible para administradores):
 
 | Acción | Cómo funciona |
