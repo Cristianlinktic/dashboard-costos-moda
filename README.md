@@ -60,16 +60,8 @@ Martha puede vivir en un proyecto de Supabase **compartido con otras aplicacione
 3. **Obligatorio — Project Settings → Data API → Exposed schemas**: agrega `martha` **sin quitar `public`** (ni los otros que ya tengas) y guarda. Sin esto la API responde «The schema must be one of the following…».
 4. **Authentication → Sign In / Providers → Email**: deja habilitado *Email* (correo y contraseña).
 5. **Authentication → Sign In / Providers**: **desactiva «Allow new users to sign up»**. Martha no tiene registro público; las cuentas solo se crean desde la app (admin) o con el script de arranque. *Si otra app del mismo proyecto necesita registro público, déjalo activo:* aun así nadie entra a Martha sin un perfil en `martha.perfiles`, que solo se crea con `app_metadata.app = 'martha'` (escribible únicamente con la service role).
-6. **Authentication → URL Configuration**:
-   - *Site URL*: la URL pública de la app (p. ej. `https://martha.vercel.app`).
-   - *Redirect URLs*: agrega `https://TU-DOMINIO/auth/callback`, `https://TU-DOMINIO/auth/actualizar-clave` y, para desarrollo, `http://localhost:3000/**`.
-7. **Authentication → Emails → Templates** (recomendado, funciona aunque el usuario abra el correo en otro navegador):
-   ⚠ Las plantillas de correo son globales del proyecto: si otras apps las usan, coordina el cambio o déjalas por defecto (Martha también funciona con ellas).
-   - *Reset password*: enlace `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery&next=/auth/actualizar-clave`. Las invitaciones de Martha llegan con esta plantilla (la cuenta se crea con `createUser` y se envía un enlace de recuperación para definir la contraseña), así que conviene redactarla como «Define tu contraseña».
-
-   Con las plantillas por defecto también funciona: `/auth/actualizar-clave` y `/auth/callback` procesan los tokens del enlace.
-8. Configura un SMTP propio en *Authentication → Emails → SMTP Settings* si vas a enviar invitaciones a todo el equipo (el SMTP de prueba de Supabase tiene un límite bajo de correos por hora).
-9. Copia las variables en `.env.local`:
+6. No hace falta tocar *URL Configuration* ni las plantillas de correo: Martha no envía correos (ni invitaciones ni recuperación de contraseña). Deja la *Site URL* que usan tus otras apps.
+7. Copia las variables en `.env.local`:
 
 ```bash
 cp .env.example .env    # o .env.local; ambos están en .gitignore
@@ -132,14 +124,13 @@ También puedes borrar productos uno por uno desde la app (detalle del producto 
 
 ## 4. Gestionar usuarios
 
-**Cuentas propias de Martha en un proyecto compartido.** Supabase permite una sola cuenta por correo en todo el proyecto. Para que una persona tenga en Martha una contraseña distinta a la de tus otras apps, Martha crea su cuenta con un alias del correo (`nombre+martha@dominio`). La persona siempre escribe su correo normal: el login, la creación de usuarios y `crear-admin` lo traducen solos, y la lista de Usuarios muestra el correo normal. Las invitaciones llegan al mismo buzón en proveedores que aceptan alias con `+` (Gmail, Google Workspace, Outlook); si tu dominio no los acepta, usa «contraseña temporal». Desactivar a alguien en Martha no afecta su cuenta en otras apps.
+**Cuentas propias de Martha en un proyecto compartido.** Supabase permite una sola cuenta por correo en todo el proyecto. Para que una persona tenga en Martha una contraseña distinta a la de tus otras apps, Martha crea su cuenta con un alias del correo (`nombre+martha@dominio`). La persona siempre escribe su correo normal: el login, la creación de usuarios y `crear-admin` lo traducen solos, y la lista de Usuarios muestra el correo normal. Desactivar a alguien en Martha no afecta su cuenta en otras apps.
 
 En **Usuarios** (solo visible y accesible para administradores):
 
 | Acción | Cómo funciona |
 |---|---|
-| Crear con contraseña temporal | `POST /api/usuarios` → `auth.admin.createUser` con correo confirmado. Comparte la clave por un canal seguro. |
-| Invitar por correo | `POST /api/usuarios` → `auth.admin.createUser` (sin contraseña, con `app_metadata` completo desde el insert) + `auth.resetPasswordForEmail`; la persona define su contraseña en `/auth/actualizar-clave`. No se usa `inviteUserByEmail` porque no admite `app_metadata` y los triggers de `auth.users` (de Martha y de otras apps) filtran por `raw_app_meta_data->>'app'` al crearse la fila. |
+| Crear con contraseña temporal | `POST /api/usuarios` → `auth.admin.createUser` con correo confirmado y `app_metadata` completo desde el insert (los triggers de `auth.users`, de Martha y de otras apps, filtran por `raw_app_meta_data->>'app'`). Comparte la clave por un canal seguro. Es la única forma de alta: Martha no envía correos. |
 | Cambiar rol | `PATCH /api/usuarios/{id}` → actualiza `app_metadata.rol`. |
 | Asignar contraseña | `PATCH /api/usuarios/{id}` con `clave` → no hay recuperación por cuenta propia; el admin asigna una nueva. |
 | Desactivar / reactivar | `PATCH /api/usuarios/{id}` → `app_metadata.activo` + `ban_duration` (no puede iniciar sesión; la RLS le niega todo). ⚠ El baneo es de la cuenta de Supabase Auth: si la misma persona usa otra app del proyecto con ese correo, también queda bloqueada allí. |
@@ -162,7 +153,7 @@ Permisos por rol (RLS):
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - `NEXT_PUBLIC_SITE_URL` = `https://tu-dominio`
    - `SUPABASE_SERVICE_ROLE_KEY` (marca *Sensitive*)
-4. *Deploy*. Después actualiza en Supabase la *Site URL* y las *Redirect URLs* con el dominio final (paso 2.5).
+4. *Deploy*. No hay que cambiar nada en Supabase: Martha no usa enlaces de correo.
 5. Prueba: inicia sesión con el admin, crea un colaborador, registra un producto y exporta un PDF.
 
 > Si quieres publicar **solo la demo**, despliega sin variables de entorno: la app queda en modo demo para cada visitante.

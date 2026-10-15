@@ -6,7 +6,7 @@
  * Martha guarda su cuenta con un alias del correo: «nombre+martha@dominio». La persona escribe
  * siempre su correo normal; la app lo traduce al iniciar sesión, crear o listar usuarios.
  * Los proveedores con «plus addressing» (Gmail, Google Workspace, Outlook) entregan los correos
- * del alias (p. ej. invitaciones) en el mismo buzón.
+ * del alias en el mismo buzón.
  */
 const SUFIJO = "+martha";
 

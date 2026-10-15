@@ -1,7 +1,5 @@
 import "server-only";
 import { createClient } from "@supabase/supabase-js";
-import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
 import type { Rol } from "@/tipos";
 import { APP_ID, ESQUEMA, SUPABASE_ANON_KEY, SUPABASE_URL, supabaseConfigurado, type ClienteMartha } from "./cliente";
 
@@ -33,18 +31,6 @@ export function clienteDeUsuario(token: string): ClienteMartha {
     db: { schema: ESQUEMA },
     auth: { persistSession: false, autoRefreshToken: false },
     global: { headers: { Authorization: `Bearer ${token}` } },
-  });
-}
-
-/** Cliente con la sesión en cookies (rutas /auth/*). */
-export async function clienteConCookies(): Promise<ClienteMartha> {
-  const almacen = await cookies();
-  return createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-    db: { schema: ESQUEMA },
-    cookies: {
-      getAll: () => almacen.getAll(),
-      setAll: (lista) => lista.forEach(({ name, value, options }) => almacen.set(name, value, options)),
-    },
   });
 }
 

@@ -137,10 +137,9 @@ Producto [Body shaper sin costuras ▾]                                  Margen 
 │ Correo      [                  ] │
 │ Contraseña  [                  ] │
 │ [           Ingresar           ] │
-│        Olvidé mi contraseña      │
 └──────────────────────────────────┘
 ```
-«Olvidé mi contraseña» → correo con enlace → `/auth/actualizar-clave` (definir contraseña nueva).
+Sin «Olvidé mi contraseña»: si alguien la olvida, un administrador le asigna otra desde Usuarios.
 No existe «Crear cuenta»: las cuentas las crea un administrador.
 
 ## 3.9 Usuarios (solo administradores)
@@ -151,11 +150,11 @@ Usuarios                                                        [+ Nuevo usuario
 │ Usuario                      │ Rol            │ Estado               │ Último acceso│              │
 │ Martha Gómez (tú)            │ Administrador  │ 🟢 Activo            │ 15 oct 2026  │              │
 │ Laura Restrepo               │ [Colaborador ▾]│ 🟢 Activo            │ 10 oct 2026  │ [Desactivar] │
-│ Andrés Pérez                 │ [Colaborador ▾]│ 🟡 Invitación pend.  │ Nunca        │ [Desactivar] │
+│ Andrés Pérez                 │ [Colaborador ▾]│ 🟢 Activo            │ Nunca        │ [Desactivar] │
 │ Camila Ruiz                  │ [Colaborador ▾]│ 🔴 Desactivado       │ 02 jul 2026  │ [Reactivar]  │
 └──────────────────────────────┴────────────────┴──────────────────────┴──────────────┴──────────────┘
 
 Modal «Nuevo usuario»: Nombre · Correo · Rol (Administrador/Colaborador)
-  (•) Enviar invitación por correo   ( ) Asignar contraseña temporal [__________]
+  Contraseña temporal [__________]  (mín. 8 caracteres)
 ```
 El admin no puede quitarse su propio rol ni desactivarse (se valida también en el servidor).

@@ -98,7 +98,7 @@ function GestionUsuarios() {
 
   async function crear(datos: DatosNuevoUsuario) {
     if (modo === "demo") {
-      const lista = [...leerDemo(), { id: nuevoId(), nombre: datos.nombre, correo: datos.correo, rol: datos.rol, activo: true, invitacionPendiente: datos.metodo === "invitacion" }];
+      const lista = [...leerDemo(), { id: nuevoId(), nombre: datos.nombre, correo: datos.correo, rol: datos.rol, activo: true }];
       escribirDemo(lista);
       setUsuarios(lista);
     } else {
@@ -113,7 +113,7 @@ function GestionUsuarios() {
     (u) =>
       (!q || `${u.nombre} ${u.correo}`.toLowerCase().includes(q)) &&
       (!filtroRol || u.rol === filtroRol) &&
-      (!filtroEstado || (filtroEstado === "inactivo" ? !u.activo : filtroEstado === "pendiente" ? u.activo && u.invitacionPendiente : u.activo && !u.invitacionPendiente)),
+      (!filtroEstado || (filtroEstado === "inactivo" ? !u.activo : u.activo)),
   );
 
   return (
@@ -166,7 +166,6 @@ function GestionUsuarios() {
           onCambio={setFiltroEstado}
           opciones={[
             { valor: "activo", etiqueta: "Activos" },
-            { valor: "pendiente", etiqueta: "Invitación pendiente" },
             { valor: "inactivo", etiqueta: "Desactivados" },
           ]}
         />
@@ -229,9 +228,9 @@ function GestionUsuarios() {
             {
               clave: "estado",
               titulo: "Estado",
-              ordenar: (u) => (u.activo ? (u.invitacionPendiente ? 1 : 0) : 2),
+              ordenar: (u) => (u.activo ? 0 : 1),
               render: (u) =>
-                !u.activo ? <Etiqueta tono="rojo">Desactivado</Etiqueta> : u.invitacionPendiente ? <Etiqueta tono="amarillo">Invitación pendiente</Etiqueta> : <Etiqueta tono="verde">Activo</Etiqueta>,
+                !u.activo ? <Etiqueta tono="rojo">Desactivado</Etiqueta> : <Etiqueta tono="verde">Activo</Etiqueta>,
             },
             { clave: "acceso", titulo: "Último acceso", ordenar: (u) => u.ultimoAcceso ?? "", render: (u) => <span className="text-xs text-tinta-suave">{u.ultimoAcceso ? formatoFecha(u.ultimoAcceso) : "Nunca"}</span> },
             {
@@ -306,7 +305,7 @@ function GestionUsuarios() {
 }
 
 function FormularioUsuario({ onCrear, onCancelar }: { onCrear: (d: DatosNuevoUsuario) => Promise<void>; onCancelar: () => void }) {
-  const [d, setD] = useState<DatosNuevoUsuario>({ nombre: "", correo: "", rol: "colaborador", metodo: "invitacion", clave: "" });
+  const [d, setD] = useState<DatosNuevoUsuario>({ nombre: "", correo: "", rol: "colaborador", clave: "" });
   const [error, setError] = useState<string | null>(null);
   const [enviando, setEnviando] = useState(false);
 
@@ -320,7 +319,7 @@ function FormularioUsuario({ onCrear, onCancelar }: { onCrear: (d: DatosNuevoUsu
         setEnviando(true);
         setError(null);
         try {
-          await onCrear({ ...d, clave: d.metodo === "clave" ? d.clave : undefined });
+          await onCrear(d);
         } catch (err) {
           setError(err instanceof Error ? err.message : String(err));
         } finally {
@@ -346,34 +345,15 @@ function FormularioUsuario({ onCrear, onCancelar }: { onCrear: (d: DatosNuevoUsu
           ))}
         </select>
       </Campo>
-      <fieldset className="space-y-2">
-        <legend className="etiqueta">Acceso</legend>
-        <label className="flex items-start gap-2 text-sm">
-          <input type="radio" name="metodo" checked={d.metodo === "invitacion"} onChange={() => setD({ ...d, metodo: "invitacion" })} className="mt-1 accent-marca" />
-          <span>
-            Enviar invitación por correo
-            <span className="block text-xs text-tinta-tenue">La persona define su contraseña desde el enlace.</span>
-          </span>
-        </label>
-        <label className="flex items-start gap-2 text-sm">
-          <input type="radio" name="metodo" checked={d.metodo === "clave"} onChange={() => setD({ ...d, metodo: "clave" })} className="mt-1 accent-marca" />
-          <span>
-            Asignar contraseña temporal
-            <span className="block text-xs text-tinta-tenue">Compártela por un canal seguro. Si la olvida, un administrador puede asignarle otra.</span>
-          </span>
-        </label>
-      </fieldset>
-      {d.metodo === "clave" && (
-        <Campo etiqueta="Contraseña temporal" ayuda="Mínimo 8 caracteres.">
-          <input className="campo" type="text" autoComplete="new-password" value={d.clave} onChange={(e) => setD({ ...d, clave: e.target.value })} />
-        </Campo>
-      )}
+      <Campo etiqueta="Contraseña temporal" ayuda="Mínimo 8 caracteres. Compártela por un canal seguro; si la olvida, un administrador puede asignarle otra.">
+        <input className="campo" type="text" required minLength={8} autoComplete="new-password" value={d.clave} onChange={(e) => setD({ ...d, clave: e.target.value })} />
+      </Campo>
       <div className="flex justify-end gap-2">
         <button type="button" className="btn-secundario" onClick={onCancelar}>
           Cancelar
         </button>
         <button className="btn-primario" disabled={enviando}>
-          {enviando ? "Creando…" : d.metodo === "invitacion" ? "Enviar invitación" : "Crear usuario"}
+          {enviando ? "Creando…" : "Crear usuario"}
         </button>
       </div>
     </form>

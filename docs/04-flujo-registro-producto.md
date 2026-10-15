@@ -47,15 +47,11 @@ flowchart TD
   A[npm run crear-admin<br/>o supabase/bootstrap_admin.sql] --> B[Organización + configuración<br/>+ primer admin con app_metadata]
   B --> C[Admin inicia sesión con correo y contraseña]
   C --> D[Usuarios → + Nuevo usuario<br/>nombre, correo, rol]
-  D --> E{Método}
-  E -- Contraseña temporal --> F[POST /api/usuarios<br/>createUser con app_metadata]
-  E -- Invitación --> G[POST /api/usuarios<br/>createUser con app_metadata<br/>+ resetPasswordForEmail]
+  D --> F[POST /api/usuarios<br/>createUser con contraseña temporal<br/>y app_metadata desde el insert]
   F --> H[Trigger sincronizar_perfil<br/>crea perfil]
-  G --> H
-  G --> I[Correo de invitación →<br/>/auth/confirm → /auth/actualizar-clave]
   H --> J[El usuario inicia sesión]
   J --> K{¿Olvidó la contraseña?}
-  K -- sí --> L[El administrador le asigna una<br/>contraseña temporal o la invita de nuevo]
+  K -- sí --> L[El administrador le asigna una<br/>contraseña temporal]
 ```
 
 - La ruta de servidor valida el token del llamante y que su perfil sea **admin activo** de la misma organización antes de usar la service role.

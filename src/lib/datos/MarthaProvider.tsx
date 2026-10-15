@@ -63,7 +63,7 @@ const VACIA: BaseDatos = {
 
 const Contexto = createContext<ContextoMartha | null>(null);
 const CLAVE_ROL_DEMO = "martha-demo-rol";
-export const RUTAS_PUBLICAS = ["/acceso", "/auth"];
+export const RUTAS_PUBLICAS = ["/acceso"];
 
 export const nuevoId = () => crypto.randomUUID();
 const ahora = () => new Date().toISOString();

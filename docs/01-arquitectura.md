@@ -58,10 +58,10 @@ Martha es una aplicación web responsive para que un emprendedor de ecommerce (m
 
 ## 1.4 Autenticación, usuarios y roles
 
-- **Supabase Auth solo con correo y contraseña.** Solo inicio de sesión: no hay recuperación de contraseña por cuenta propia; un administrador invita de nuevo o asigna una contraseña temporal. `/auth/actualizar-clave` se usa al aceptar una invitación.
+- **Supabase Auth solo con correo y contraseña.** Solo inicio de sesión: no hay recuperación de contraseña por cuenta propia; un administrador le asigna una contraseña temporal. Martha no envía correos.
 - **No hay registro público.** En Supabase se desactiva *Allow new users to sign up*; la app no tiene página ni enlace de registro.
 - **El primer admin y su organización** se crean con `npm run crear-admin` (o con `supabase/bootstrap_admin.sql`).
-- **Los demás usuarios los crea un admin** desde la sección **Usuarios** (solo visible para admin): nombre, correo, rol y contraseña temporal *o* invitación por correo. También puede cambiar roles y desactivar/reactivar cuentas.
+- **Los demás usuarios los crea un admin** desde la sección **Usuarios** (solo visible para admin): nombre, correo, rol y contraseña temporal. También puede cambiar roles y desactivar/reactivar cuentas.
 - Esas operaciones pasan por **rutas de servidor** (`/api/usuarios`, `/api/usuarios/[id]`) que usan `SUPABASE_SERVICE_ROLE_KEY` —variable solo de servidor, nunca expuesta al navegador— y **validan en el servidor** que quien llama es admin activo de esa organización (token Bearer → `auth.getUser` → tabla `perfiles`).
 - `app: 'martha'`, `organizacion_id`, `rol` y `activo` se guardan en **`app_metadata`** (el usuario no puede editarlo, a diferencia de `user_metadata`). Un trigger (`sincronizar_perfil`) refleja esos valores en la tabla `perfiles`, que es la que usa la RLS.
 - Desactivar un usuario: `activo = false` en `app_metadata` + `ban_duration` en Supabase Auth (no puede iniciar sesión ni refrescar su token) + la RLS le niega todo porque `mi_organizacion()` solo devuelve organizaciones de perfiles activos.
@@ -72,7 +72,7 @@ Martha es una aplicación web responsive para que un emprendedor de ecommerce (m
  POST /api/usuarios  ──Bearer JWT──▶  exigirAdmin():                             
    {nombre, correo,                     auth.getUser(token) ───────────────────▶ Auth
     rol, metodo}                        perfiles (service role) → ¿admin activo?  Postgres
-                                        createUser (+ resetPasswordForEmail si es invitación)
+                                        createUser (app_metadata desde el insert)
                                           app_metadata = {organizacion_id, rol} ─▶ Auth
                                                                                    └─ trigger → perfiles
 ```
@@ -102,7 +102,6 @@ martha/
 │   │   ├── lotes/ simulador/ proveedores/ configuracion/
 │   │   ├── usuarios/             ← gestión de usuarios (solo admin)
 │   │   ├── acceso/               ← login (sin registro ni recuperación)
-│   │   ├── auth/                 ← callback/confirm de correo y actualizar contraseña
 │   │   └── api/                  ← usuarios (service role) y v1 (REST para integraciones)
 │   ├── components/               ← UI reutilizable (tarjetas, semáforo, gráficos, formularios)
 │   ├── lib/
