@@ -125,7 +125,7 @@ export default function Dashboard() {
       </div>
 
       <div className="mt-4 grid gap-4 lg:grid-cols-12">
-        <section className="tarjeta-luz p-5 lg:col-span-8">
+        <section className="tarjeta-luz tono-malva p-5 lg:col-span-8">
           <TituloTarjeta icono={LineChart} titulo="Evolución del costo" descripcion="Inversión de cada mes y costo unitario real de los lotes de ese mes." />
           <GraficoEvolucion datos={m.evolucionMensual} />
         </section>
@@ -188,7 +188,7 @@ export default function Dashboard() {
           )}
         </section>
 
-        <section className="tarjeta-luz p-5 lg:col-span-7">
+        <section className="tarjeta-luz tono-malva p-5 lg:col-span-7">
           <TituloTarjeta icono={PieChart} titulo="Costos por categoría" descripcion="Inversión registrada en el periodo filtrado." />
           {m.costosPorCategoria.length ? (
             <GraficoCategorias datos={m.costosPorCategoria.map((c) => ({ nombre: CATEGORIAS[c.categoria].etiqueta, total: c.total }))} />

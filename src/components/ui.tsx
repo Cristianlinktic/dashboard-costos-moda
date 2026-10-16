@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { X, type LucideIcon } from "lucide-react";
 import type { Semaforo } from "@/lib/calculos/motor";
 import { formatoPct } from "@/lib/formato";
@@ -98,14 +99,13 @@ export function Kpi({
   extra?: ReactNode;
 }) {
   const animable = numero != null && Number.isFinite(numero) && formato;
-  const halo = { verde: "bg-verde/15", amarillo: "bg-amarillo/15", rojo: "bg-rojo/15", gris: "bg-marca/10" }[tono ?? "gris"];
+  const tonoTarjeta = { verde: "tono-verde", amarillo: "tono-ambar", rojo: "tono-rojo", gris: "" }[tono ?? "gris"];
   return (
-    <div className="tarjeta-viva group relative overflow-hidden p-4 sm:p-5">
-      <span aria-hidden className={cx("pointer-events-none absolute -top-10 -right-10 size-28 rounded-full blur-2xl transition-transform duration-500 group-hover:scale-125", halo)} />
+    <div className={cx("tarjeta-viva group relative overflow-hidden p-4 sm:p-5", tonoTarjeta)}>
       <div className="relative flex items-start justify-between gap-3">
         <p className="text-xs font-semibold text-tinta-suave">{etiqueta}</p>
         {Icono && (
-          <span className="grid size-8 shrink-0 place-items-center rounded-xl bg-[image:var(--mt-gradiente-marca)] text-white shadow-[0_6px_14px_-6px_var(--mt-lila-600)] transition-transform duration-300 group-hover:-rotate-6">
+          <span className="pastilla-tono size-8 transition-transform duration-300 group-hover:-rotate-6">
             <Icono className="size-4" />
           </span>
         )}
@@ -124,7 +124,7 @@ export function TituloTarjeta({ icono: Icono, titulo, descripcion, accion }: { i
   return (
     <div className="mb-4 flex items-start justify-between gap-3">
       <div className="flex min-w-0 items-start gap-3">
-        <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-marca-suave text-marca ring-1 ring-marca/15">
+        <span className="pastilla-tono size-9">
           <Icono className="size-4" />
         </span>
         <div className="min-w-0">
@@ -242,8 +242,9 @@ export function Modal({ abierto, titulo, onCerrar, children, ancho = "max-w-2xl"
     });
     return () => ctx.revert();
   }, [abierto]);
-  if (!abierto) return null;
-  return (
+  if (!abierto || typeof document === "undefined") return null;
+  // Portal a <body>: dentro de una tarjeta (backdrop-filter) el «fixed» quedaría encerrado en ella.
+  return createPortal(
     <div ref={fondo} className="fixed inset-0 z-50 flex items-end justify-center bg-grafito-950/50 backdrop-blur-[2px] sm:items-center sm:p-4" onClick={onCerrar}>
       <div
         ref={panel}
@@ -261,7 +262,8 @@ export function Modal({ abierto, titulo, onCerrar, children, ancho = "max-w-2xl"
         </div>
         {children}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 

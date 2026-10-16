@@ -194,7 +194,7 @@ export function FormularioCosto({ producto, costos, lotes, variantes = [], tasas
       )}
 
       {conReal && (
-        <div className="grid gap-3 rounded-lg bg-hundido p-3 sm:grid-cols-2">
+        <div className="grid gap-3 rounded-xl border border-marca/20 bg-marca-suave/60 p-3 sm:grid-cols-2">
           <Campo etiqueta="Valor real (factura)" ayuda="Déjalo vacío si aún no llega la factura.">
             <input
               className="campo"

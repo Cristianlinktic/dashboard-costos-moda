@@ -134,3 +134,11 @@ Reglas:
 | `Revelar`, `ContadorAnimado`, `useColoresTema` | `components/movimiento/` | Movimiento y puente de colores |
 
 Uso de los paneles de marca (`fondo-marca`): uno por pantalla como máximo (cabecera del dashboard, panel de acceso, portada de la guía). El resto de la interfaz es neutra con acentos de marca, como pide el manual: «paleta cromática neutra con acentos de color de marca».
+
+## v2.5 · Tarjetas «glaseado»
+
+Las tarjetas (`tarjeta`, `tarjeta-luz`, `tarjeta-viva`) dejan de ser blancas planas: son vidrio translúcido (`backdrop-filter`, deja ver la aurora del fondo) con un brillo diagonal arriba a la izquierda, un velo del tono de la tarjeta en la esquina superior derecha, una línea de color pegada al borde superior (va en `border-box` y el borde es translúcido) y sombra teñida. El tono sale de `--t`/`--t2` (por defecto lila → malva) y se cambia con `tono-malva`, `tono-verde`, `tono-ambar` o `tono-rojo`. En modo noche la intensidad baja (`--tv-velo`, `--tv-borde`, `--tv-sombra`, `--tv-vidrio`, `--tv-brillo`) para que no se vea morado.
+
+- KPIs: el tono sigue al semáforo (verde, ámbar, rojo); los de dinero quedan en lila.
+- Gráficos de costos: `tono-malva`. Productos: la tarjeta toma el color de su margen.
+- La pastilla del ícono (`pastilla-tono`) usa el mismo tono que su tarjeta.

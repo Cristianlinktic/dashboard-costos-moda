@@ -185,8 +185,10 @@ function TarjetaProducto({ p, r, proveedor, onDuplicar }: { p: Producto; r: Resu
     rojo: "bg-[linear-gradient(90deg,var(--mt-rojo-300),var(--mt-rojo-600))]",
     gris: "bg-linea-fuerte",
   }[r.semaforo];
+  // La tarjeta se tiñe con el estado del margen (velo, línea superior y borde).
+  const tono = { verde: "tono-verde", amarillo: "tono-ambar", rojo: "tono-rojo", gris: "" }[r.semaforo];
   return (
-    <li className="tarjeta-viva group relative flex flex-col overflow-hidden">
+    <li className={cx("tarjeta-viva group relative flex flex-col overflow-hidden", tono)}>
       <Link href={`/productos/${p.id}`} className="flex flex-1 flex-col p-5">
         <div className="flex items-start gap-3">
           {p.imagenUrl ? (
